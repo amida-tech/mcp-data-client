@@ -1,6 +1,11 @@
 {
   "name": "amida-react-skeleton-graphql",
   "version": "0.1.0",
+  "author": "Grant Orndorff <grant@amida.com>",
+  "contributors": [
+    "Alan Thompson <alan@amida.com>",
+    "Elijah George <elijah@amida.com>"
+  ],
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
