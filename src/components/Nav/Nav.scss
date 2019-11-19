@@ -17,11 +17,6 @@
   }
 
   // Logo
-  &__logo-container {
-    width: 200px;
-    cursor: pointer;
-  }
-
   &__logo {
     width: $nav-height;
   }
@@ -63,7 +58,6 @@
 
   &__menu-item-list {
     color: #b8b7ad;
-    padding: 0.8em;
   }
 
   &__menu-overlay {

@@ -5,7 +5,6 @@ import { slide as Menu } from "react-burger-menu";
 import navLogo from "../../images/logo.svg";
 
 const Nav: React.FC = () => {
-  const history = useHistory();
   let [menuOpen, setMenuOpen] = useState(false);
 
   const handleStateChange = (state: any) => {
@@ -17,14 +16,12 @@ const Nav: React.FC = () => {
   return (
     <div className="nav-wrapper">
       <nav className="nav">
-        <div
+        <Link
+          to="/"
           className={"nav__logo-container"}
-          onClick={() => {
-            history.push("/");
-          }}
         >
           <img className={"nav__logo"} src={navLogo} alt="logo" />
-        </div>
+        </Link>
         <Menu
           right
           className={"menu"}
@@ -39,14 +36,11 @@ const Nav: React.FC = () => {
           overlayClassName={"nav__menu-overlay"}
           onStateChange={(state) => handleStateChange(state)}
         >
-          <div className="nav__menu-welcome">
-            <label>{"Welcome"}</label>
-          </div>
           <Link
             to="/app/rating"
             onClick={() => setMenuOpen(false)}
           >
-              {"Go to Rating Page"}
+            {"Go to Rating Page"}
           </Link>
         </Menu>
       </nav>

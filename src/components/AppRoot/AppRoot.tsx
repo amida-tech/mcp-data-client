@@ -13,7 +13,7 @@ const AppRoot: React.FC<RouteComponentProps> = props => {
         <Route path={`${match.path}/rating`} component={RatingPage} />
         <Route path="/" component={HomePage} />
       </Switch>
-  </Layout>
+    </Layout>
   );
 };
 
