@@ -1,0 +1,83 @@
+$primaryColor: #A261B1; // testing, refactor into separate style directory
+$nav-height: 60px;
+$max-width: 1440px;
+$break-xs: 32em;
+$break-ss: 40em;
+$break-sm: 48em;
+$break-ms: 56em;
+$break-md: 64em;
+$break-lg: 75em;
+
+.nav {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background: $primaryColor;
+  display: block;
+  height: $nav-height;
+  z-index: 1000;
+
+  &__spacer {
+    width: 100%;
+    position: relative;
+    top: 0;
+    height: $nav-height;
+    z-index: 1;
+  }
+
+  // Logo
+  &__logo-container {
+    width: 200px;
+    cursor: pointer;
+  }
+
+  &__logo {
+    width: $nav-height;
+  }
+
+  // Nav Menu (react-burger-menu)
+  &__menu {
+    background: grey;
+    padding: 2.5em 1.5em 0;
+    font-size: 1.35em;
+  }
+
+  &__menu-item {
+    padding: 0.5em;
+    color: white;
+    text-decoration: none;
+  }
+
+  &__menu-burger-button {
+    position: fixed;
+    width: 40px;
+    height: 35px;
+    right: 15px;
+    top: 11px;
+    color: red;
+  }
+
+  &__menu-burger-bar {
+    background: white;
+  }
+
+  &__menu-cross {
+    background: #bdc3c7;
+  }
+
+  &__menu-cross-button {
+    height: 24px;
+    width: 24px;
+  }
+
+  &__menu-item-list {
+    color: #b8b7ad;
+    padding: 0.8em;
+  }
+
+  &__menu-overlay {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+}

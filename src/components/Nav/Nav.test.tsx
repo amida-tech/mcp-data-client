@@ -1,17 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import HomePage from "./HomePage";
+import Nav from "./Nav";
 import App from "../App/App";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
-  const homePage = () => {
+  const nav = () => {
     return (
       <App>
-        <HomePage />
+        <Nav />
       </App>
     );
   };
-  ReactDOM.render(homePage(), div);
+  ReactDOM.render(nav(), div);
   ReactDOM.unmountComponentAtNode(div);
 });
