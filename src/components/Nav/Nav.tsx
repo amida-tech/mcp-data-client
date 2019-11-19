@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
 
 import navLogo from "../../images/logo.svg";
