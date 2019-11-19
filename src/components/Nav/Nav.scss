@@ -1,12 +1,4 @@
-$primaryColor: #A261B1; // testing, refactor into separate style directory
-$nav-height: 60px;
-$max-width: 1440px;
-$break-xs: 32em;
-$break-ss: 40em;
-$break-sm: 48em;
-$break-ms: 56em;
-$break-md: 64em;
-$break-lg: 75em;
+@import "../../styles/variables.scss";
 
 .nav {
   position: fixed;
