@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
 import "./Nav.scss";
 
-import navLogo from '../../images/logo.svg';
+import navLogo from "../../images/logo.svg";
 
 const Nav: React.FC = () => {
   const history = useHistory();
@@ -19,12 +19,12 @@ const Nav: React.FC = () => {
     <div className="nav-wrapper">
       <nav className="nav">
         <div
-          className={'nav__logo-container'}
+          className={"nav__logo-container"}
           onClick={() => {
             history.push("/");
           }}
         >
-          <img className={'nav__logo'} src={navLogo} alt="logo" />
+          <img className={"nav__logo"} src={navLogo} alt="logo" />
         </div>
         <Menu
           right
