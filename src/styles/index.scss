@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+// Base Styling -- applies to all pages
+@import "base/base";
+
+// Variables
+@import "utilities/variables";
+
+// Views
+@import "../components/HomePage/HomePage";
+@import "../components/Layout/Layout";
+@import "../components/Nav/Nav";
+@import "../components/RatingPage/RatingPage";
