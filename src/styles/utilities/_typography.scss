@@ -1,0 +1,240 @@
+$TEXT__H1--FONT-SIZE: 3.1875rem;
+$TEXT__H1--LINE-HEIGHT: 1.35294118em;
+.text__h1 {
+  font-size: $TEXT__H1--FONT-SIZE;
+  line-height: $TEXT__H1--LINE-HEIGHT;
+  margin-top: 0.45098039em;
+  margin-bottom: 0.45098039em;
+}
+
+.text__h1--rem {
+  font-size: 3.1875rem;
+  line-height: 1.35294118em;
+  margin-top: 0.45098039em;
+  margin-bottom: 0.45098039em;
+}
+
+$TEXT__H2--FONT-SIZE: 2.375rem;
+$TEXT__H2--LINE-HEIGHT: 1.21052632em;
+.text__h2 {
+  font-size: $TEXT__H2--FONT-SIZE;
+  line-height: $TEXT__H2--LINE-HEIGHT;
+  margin-top: 0.60526316em;
+  margin-bottom: 0.60526316em;
+}
+
+$TEXT__H3--FONT-SIZE: 1.75rem;
+$TEXT__H3--LINE-HEIGHT: 1.64285714em;
+.text__h3 {
+  font-size: $TEXT__H3--FONT-SIZE;
+  line-height: $TEXT__H3--LINE-HEIGHT;
+  margin-top: 0.82142857em;
+  margin-bottom: 0.82142857em;
+}
+
+$TEXT__H4--FONT-SIZE: 1.4375em;
+$TEXT__H4--LINE-HEIGHT: 1.64285714em;
+.text__h4 {
+  font-size: $TEXT__H4--FONT-SIZE;
+  line-height: $TEXT__H4--LINE-HEIGHT;
+  margin-top: 0.91304348em;
+  margin-bottom: 0em;
+}
+
+$TEXT__H5--FONT-SIZE: 1rem;
+$TEXT__H5--LINE-HEIGHT: 1.4375em;
+.text__h5 {
+  font-size: $TEXT__H5--FONT-SIZE;
+  line-height: $TEXT__H5--LINE-HEIGHT;
+  margin-top: 1.4375em;
+  margin-bottom: 0em;
+}
+
+$TEXT__H6--FONT-SIZE: 1rem;
+$TEXT__H6--LINE-HEIGHT: 1.4375em;
+.text__h6 {
+  font-size: $TEXT__H6--FONT-SIZE;
+  line-height: $TEXT__H6--LINE-HEIGHT;
+  margin-top: 1.4375em;
+  margin-bottom: 0em;
+}
+
+$TEXT__H7--FONT-SIZE: 0.93rem;
+$TEXT__H7--LINE-HEIGHT: 1em;
+.text__h7 {
+  font-size: $TEXT__H7--FONT-SIZE;
+  line-height: $TEXT__H7--LINE-HEIGHT;
+  margin-top: 0.3em;
+  margin-bottom: 0em;
+}
+
+$TEXT__H8--FONT-SIZE: 0.75rem;
+$TEXT__H8--LINE-HEIGHT: 0.761em;
+.text__h8 {
+  font-size: $TEXT__H8--FONT-SIZE;
+  line-height: $TEXT__H8--LINE-HEIGHT;
+  margin-top: 1.4375em;
+  margin-bottom: 0em;
+  &--no-margin {
+    margin-top: 0em;
+  }
+}
+
+@media #{$query__md-above} {
+  .text__h1 {
+    font-size: 4em;
+    line-height: 1.3125em;
+    margin-top: 0.328125em;
+    margin-bottom: 0.328125em;
+  }
+  .text__h1--rem {
+    font-size: 4rem;
+    line-height: 1.3125em;
+    margin-top: 0.328125em;
+    margin-bottom: 0.328125em;
+  }
+  .text__h2 {
+    font-size: 2.8125em;
+    line-height: 1.4em;
+    margin-top: 0.46666667em;
+    margin-bottom: 0.93333334em;
+  }
+  .text__h3 {
+    font-size: 2em;
+    line-height: 1.3125em;
+    margin-top: 0.65625em;
+    margin-bottom: 0.65625em;
+  }
+  .text__h4 {
+    font-size: 1.4375em;
+    line-height: 1.82608696em;
+    margin-top: 0.91304348em;
+    margin-bottom: 0em;
+  }
+  .text__h5 {
+    font-size: 1em;
+    line-height: 1.3125em;
+    margin-top: 1.3125em;
+    margin-bottom: 0em;
+  }
+  .text__h6 {
+    font-size: 1em;
+    line-height: 1.3125em;
+    margin-top: 1.3125em;
+    margin-bottom: 0em;
+  }
+}
+
+.text-style__page-title {
+  @extend .text__h1--rem;
+  @include applyThematically(color, LABEL_COLOR);
+  font-weight: 700;
+  &--light {
+    @include applyThematically(color, SECONDARY_LABEL_COLOR);
+  }
+}
+
+.text-style__caption1 {
+  @extend .text__h7;
+  font-family: $font-primary;
+  @include applyThematically(color, SECONDARY_LABEL_COLOR);
+  font-weight: 800;
+  letter-spacing: -0.17px;
+}
+
+.text-style__caption2 {
+  @extend .text__h8;
+  font-family: $font-primary;
+  @include applyThematically(color, SECONDARY_LABEL_COLOR);
+  font-weight: 800;
+  letter-spacing: -0.17px;
+}
+
+.text-style__headline {
+  @extend .text__h4;
+  font-family: $font-primary;
+  @include applyThematically(color, LABEL_COLOR);
+  font-weight: 700;
+  letter-spacing: -0.17px;
+  &--large {
+    @extend .text__h1;
+    font-weight: 700;
+  }
+  &--small {
+    @extend .text__h5;
+    font-weight: 700;
+  }
+  &--light {
+    @include applyThematically(color, SECONDARY_LABEL_COLOR);
+  }
+}
+
+.text-style__subhead {
+  @extend .text__h7;
+  @include applyThematically(color, SECONDARY_LABEL_COLOR);
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.text-style__cell-headline {
+  @extend .text__h6;
+  letter-spacing: -0.3px;
+}
+
+.text-style__context {
+  @extend .text__h4;
+  @include applyThematically(color, LABEL_COLOR);
+  font-weight: 700;
+}
+
+.text-style__subhead-link {
+  @extend .text__h4;
+  @include applyThematically(color, LABEL_COLOR);
+  margin-bottom: 1.0952381em;
+}
+
+$COPY_TEXT--FONT_SIZE: 1rem;
+.text-style__copy {
+  font-size: $COPY_TEXT--FONT_SIZE;
+  @include applyThematically(color, LABEL_COLOR);
+  &--large {
+    @extend .text__h4;
+    letter-spacing: -0.3px;
+  }
+}
+
+.text-style__input-label {
+  @include applyThematically(color, LABEL_COLOR);
+  font-weight: 700;
+}
+
+.text-style__caption {
+  color: inherit;
+  font-weight: inherit;
+  font-style: italic;
+}
+
+.text-style__result-heading {
+  @extend .text__h4;
+  @include applyThematically(color, LABEL_COLOR);
+  margin-top: 0;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.4em;
+}
+
+.text-style__result-context {
+  @include applyThematically(color, LABEL_COLOR);
+  text-transform: uppercase;
+}
+
+.text-style__navigation-link {
+  @extend .--disable-select;
+  @extend .text__h8;
+  @extend .text__h8--no-margin;
+  @include applyThematically(color, LABEL_COLOR);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+}

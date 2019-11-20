@@ -1,10 +1,17 @@
 @charset "UTF-8";
 
+// Utilities
+// functions and variables
+@import "utilities/bem-functions";
+@import "utilities/breakpoints";
+@import "utilities/colors";
+@import "utilities/variables";
+// reusable classes
+@import "utilities/modifiers";
+@import "utilities/typography";
+
 // Base Styling -- applies to all pages
 @import "base/base";
-
-// Variables
-@import "utilities/variables";
 
 // Views
 @import "../components/HomePage/HomePage";

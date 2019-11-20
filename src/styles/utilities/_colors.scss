@@ -1,0 +1,711 @@
+//
+// # APPLICATION DEFAULT COLORS
+//
+//   * Reference these in your block stylesheets.
+//   * Each item in here should be a varaible declaration with `!default` appended
+//     * When we render the themed stylesheets, we provide them with the ability to override vars.
+//     * Using the SASS default flag, we can define this as the fallback for any variable they choose not to define.
+//     * This allows us to build a theme knowing all elements will have a default fallback.
+//     * You can read more about !default here: https://thoughtbot.com/blog/sass-default
+//
+// # Construction
+//   1. Active Colors
+//   2. Deprecated Colors
+//   3. Override Colors
+//   4. Provisional Colors
+//
+// # Good Naming Practices
+//   * Names formatted in SPINAL_CASE.
+//   * Names should describe context for use. Prefer defaulting to HTML tags here.
+//     * `$LIST-ITEM`
+//     * `$HEADER`
+//     * `$BUTTON-TEXT`
+//   * Names should describe attribute involved, eg:
+//     * `$LIST-ITEM-BORDER-COLOR`
+//     * `$HEADER-BACKGROUND-COLOR`
+//     * `$BUTTON-TEXT-COLOR`
+//   * Names can include bem-style modifiers, eg:
+//     * `$LIST-ITEM-BORDER-COLOR--FOCUSED`
+//     * `$HEADER-BACKGROUND-COLOR--ADMIN-MODE`
+//     * `$BUTTON-TEXT-COLOR--DISABLED`
+//   * Use `PRIMARY`, `SECONDARY`, `TERTIARY`, `QUARTERNATY`, eg:
+//     * `$PRIMARY-LIST-ITEM-BORDER-COLOR--FOCUSED`
+//     * `$SECONDARY-HEADER-BACKGROUND-COLOR`
+//     * `$SECONDARY-BUTTON-TEXT-COLOR`
+//
+// # Tasks
+//   [ ] Remove all deprecated colors
+//   [ ] Render function to supply all themes
+//   [ ] Render function to only produce defitions for elements that have changed (webpack may handle?)
+
+@mixin darkMode() {
+  $key: dark;
+  @media (prefers-color-scheme: $key) {
+    @content;
+  }
+}
+
+@mixin lightMode() {
+  $key: light;
+  @content;
+  @media (prefers-color-scheme: $key) {
+    @content;
+  }
+}
+
+///////////////////////
+//  # ACTIVE COLORS  //
+///////////////////////
+//    * This is where you declare every color variable.
+//    * Colors declared in this location should be overrideen by the theme definitions
+//      * They all need `!default`
+//
+// ## TEXT COLORS
+//
+// ### DISPLAY TEXT COLORS
+// * Use for headers
+$PRIMARY_DISPLAY_TEXT_COLOR: #001a33 !default;
+$SECONDARY_DISPLAY_TEXT_COLOR: #495560 !default;
+$TERTIARY_DISPLAY_TEXT_COLOR: #8f8e94 !default;
+$QUATERNARY_DISPLAY_TEXT_COLOR: #babbbf !default;
+$ALTERNATE_DISPLAY_TEXT_COLOR: #ffffff !default;
+// used for things where an inverse text color is needed
+// THIS NEEDS A BETTER NAME
+
+// ### BODY TEXT COLORS
+// * Use for main page content
+$PRIMARY_BODY_TEXT_COLOR: #001a33 !default;
+$PRIMARY_BODY_TEXT_COLOR--DARK: #ffffff !default;
+$SECONDARY_BODY_TEXT_COLOR: #495560 !default;
+$TERTIARY_BODY_TEXT_COLOR: #8f8e94 !default;
+$QUATERNARY_BODY_TEXT_COLOR: #babbbf !default;
+// ### LABEL TEXT COLORS
+// * Use for labels
+$PRIMARY_LABEL_TEXT_COLOR: #001a33 !default;
+$PRIMARY_LABEL_TEXT_COLOR--DARK: #ffffff !default;
+$PRIMARY_LABEL_TEXT_COLOR--WARNING: #c71835 !default;
+$SECONDARY_LABEL_TEXT_COLOR: #495560 !default;
+$TERTIARY_LABEL_TEXT_COLOR: #8f8e94 !default;
+$TERTIARY_LABEL_TEXT_COLOR--DARK: #babbbf !default;
+$QUATERNARY_LABEL_TEXT_COLOR: #babbbf !default;
+
+// ### LINK TEXT COLORS
+// * Use for labels
+$PRIMARY_LINK_TEXT_COLOR: #0091ea !default;
+$PRIMARY_LINK_TEXT_COLOR--ACTIVE: #0091ea !default;
+$PRIMARY_LINK_TEXT_COLOR--FOCUS: #0091ea !default;
+$PRIMARY_LINK_TEXT_COLOR--HOVER: #00619e !default;
+$PRIMARY_DISABLED_LINK_TEXT_COLOR: #8f8e94 !default;
+$SECONDARY_LINK_TEXT_COLOR: #0091ea !default;
+$TERTIARY_LINK_TEXT_COLOR: #0091ea !default;
+$QUATERNARY_LINK_TEXT_COLOR: #0091ea !default;
+// ### LINK TEXT COLORS
+// * Use for labels
+$PRIMARY_TOAST_TEXT_COLOR: #ffffff;
+$PRIMARY_TOAST_BACKGROUND_COLOR: #0091ea;
+$PRIMARY_TOAST_TEXT_COLOR--WARNING: #ffffff;
+$PRIMARY_TOAST_BACKGROUND_COLOR--WARNING: #e11c3c;
+$PRIMARY_TOAST_TEXT_COLOR--GENERIC: #495560;
+$PRIMARY_TOAST_BACKGROUND_COLOR--GENERIC: #ffffff;
+//
+// CONTENT COLORS
+//
+// CONTENT
+// * Use for main content states
+$PRIMARY_CONTENT_BACKGROUND_COLOR: #ffffff !default;
+$PRIMARY_CONTENT_BACKGROUND_COLOR--DARK: #333333 !default;
+$PRIMARY_CONTENT_BACKGROUND_COLOR--ACTIVE: #eceff1 !default;
+$PRIMARY_CONTENT_BACKGROUND_COLOR--FOCUS: #eceff1 !default;
+$PRIMARY_CONTENT_BACKGROUND_COLOR--HOVER: #eceff1 !default;
+$PRIMARY_CONTENT_BORDER_COLOR: #e3e4e9 !default;
+
+$SECONDARY_CONTENT_BACKGROUND_COLOR: #eceff1 !default;
+$SECONDARY_CONTENT_BACKGROUND_COLOR--DARK: #1d1e22 !default;
+$TERTIARY_CONTENT_BACKGROUND_COLOR: #c8cacc !default;
+$QUARTENARY_CONTENT_BACKGROUND_COLOR: #bbbebf !default;
+
+$PRIMARY_INPUT_BACKGROUND_COLOR--DARK: #717273 !default;
+$PRIMARY_INPUT_BORDER_COLOR: #cccccc !default;
+$PRIMARY_INPUT_BORDER_COLOR--DARK: #646568 !default;
+$PRIMARY_INPUT_BORDER_COLOR--FOCUSED: #009dff !default;
+$PRIMARY_INPUT_BACKGROUND_COLOR--DISABLED: #eceff1 !default;
+
+//
+// HEADER CONTENT
+// * Use for content within the header
+$PRIMARY_HEADER_TEXT_COLOR: #ffffff !default;
+// TODO: make these not all the same
+$PRIMARY_HEADER_LINK_TEXT_COLOR: #ffffff !default;
+$PRIMARY_HEADER_LINK_TEXT_COLOR--ACTIVE: #ffffff !default;
+$PRIMARY_HEADER_LINK_TEXT_COLOR--FOCUS: #ffffff !default;
+$PRIMARY_HEADER_LINK_TEXT_COLOR--HOVER: #ffffff !default;
+
+$SECONDARY_HEADER_TEXT_COLOR: #495560 !default;
+$TERTIARY_HEADER_TEXT_COLOR: #8f8e94 !default;
+$QUATERNARY_HEADER_TEXT_COLOR: #babbbf !default;
+$PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR: #0091ea !default;
+$PRIMARY_HEADER_CONTENT_BORDER_COLOR: darken(
+  $PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR,
+  15
+) !default;
+
+$PRIMARY_MODAL_HEADER_DECORATIVE_BACKGROUND_GRADIENT_WITH_OPACITY: linear-gradient(
+  275deg,
+  rgba(darken($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 6), 0.92) 0%,
+  rgba($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 0.92) 84%,
+  rgba(darken($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 5), 0.92) 100%
+);
+$PRIMARY_MODAL_HEADER_DECORATIVE_BACKGROUND_GRADIENT: linear-gradient(
+  275deg,
+  darken($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 6) 0%,
+  $PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR 84%,
+  darken($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 5) 100%
+);
+$PRIMARY_MODAL_HEADER_TEXT_COLOR: #ffffff !default;
+$SECONDARY_MODAL_HEADER_DECORATIVE_BACKGROUND_GRADIENT: linear-gradient(
+  275deg,
+  darken(#495560, 3) 0%,
+  #495560 84%,
+  darken(#495560, 2) 100%
+);
+$SECONDARY_MODAL_HEADER_TEXT_COLOR: #ffffff !default;
+$SECONDARY_MODAL_HEADER_LINK_COLOR: lighten($PRIMARY_LINK_TEXT_COLOR, 20);
+$SECONDARY_MODAL_HEADER_LINK_COLOR--ACTIVE: lighten(
+  $PRIMARY_LINK_TEXT_COLOR--ACTIVE,
+  20
+);
+$SECONDARY_MODAL_HEADER_LINK_COLOR--HOVER: lighten(
+  $PRIMARY_LINK_TEXT_COLOR--HOVER,
+  20
+);
+
+//
+// BUTTON CONTENT
+// * This may get replaced down the line with a more dynamic button themeing proccess.
+$PRIMARY_BUTTON_BACKGROUND_COLOR: #0091ea !default;
+$PRIMARY_BUTTON_BACKGROUND_COLOR--ACTIVE: #009dff !default;
+$PRIMARY_BUTTON_BACKGROUND_COLOR--FOCUS: #0091ea !default;
+$PRIMARY_BUTTON_BACKGROUND_COLOR--HOVER: #00619e !default;
+$PRIMARY_BUTTON_BORDER_COLOR: #0091ea !default;
+$PRIMARY_BUTTON_TEXT_COLOR: #ffffff !default;
+$PRIMARY_BUTTON_TEXT_SHADOW_COLOR: darken(
+  $PRIMARY_BUTTON_BACKGROUND_COLOR,
+  15
+) !default;
+
+$PRIMARY_OK_BUTTON_BACKGROUND_COLOR: #00ab3e !default;
+$PRIMARY_OK_BUTTON_BACKGROUND_COLOR--ACTIVE: #fa1e43 !default;
+$PRIMARY_OK_BUTTON_BACKGROUND_COLOR--FOCUS: #fa1e43 !default;
+$PRIMARY_OK_BUTTON_BACKGROUND_COLOR--HOVER: #c71835 !default;
+$PRIMARY_OK_BUTTON_TEXT_COLOR: #ffffff !default;
+$PRIMARY_OK_BUTTON_TEXT_SHADOW_COLOR: darken(
+  $PRIMARY_OK_BUTTON_BACKGROUND_COLOR,
+  15
+) !default;
+
+$PRIMARY_WARNING_BUTTON_BACKGROUND_COLOR: #e11c3c !default;
+$PRIMARY_WARNING_BUTTON_BACKGROUND_COLOR--ACTIVE: #fa1e43 !default;
+$PRIMARY_WARNING_BUTTON_BACKGROUND_COLOR--FOCUS: #fa1e43 !default;
+$PRIMARY_WARNING_BUTTON_BACKGROUND_COLOR--HOVER: #c71835 !default;
+$PRIMARY_WARNING_BUTTON_TEXT_COLOR: #ffffff !default;
+$PRIMARY_WARNING_BUTTON_TEXT_SHADOW_COLOR: darken(
+  $PRIMARY_WARNING_BUTTON_BACKGROUND_COLOR,
+  15
+) !default;
+
+$SECONDARY_BUTTON_BACKGROUND_COLOR: #ffffff !default;
+$SECONDARY_BUTTON_BACKGROUND_COLOR--ACTIVE: #c3d0d9 !default;
+$SECONDARY_BUTTON_BACKGROUND_COLOR--FOCUS: #dae9f2 !default;
+$SECONDARY_BUTTON_BACKGROUND_COLOR--HOVER: #dae9f2 !default;
+$SECONDARY_BUTTON_BACKGROUND_COLOR--DISABLED: transparent !default;
+$SECONDARY_BUTTON_BORDER_COLOR: #bbbfc3 !default;
+$SECONDARY_BUTTON_TEXT_COLOR: #0091ea !default;
+$SECONDARY_BUTTON_TEXT_COLOR--HOVER: #00619e !default;
+$SECONDARY_BUTTON_TEXT_COLOR--DISABLED: rgb(2, 2, 3) !default;
+
+$TERTIARY_BUTTON_BACKGROUND_COLOR: #ffffff !default;
+$TERTIARY_BUTTON_BACKGROUND_COLOR--ACTIVE: #d0d4d9 !default;
+$TERTIARY_BUTTON_BACKGROUND_COLOR--FOCUS: #eceff1 !default;
+$TERTIARY_BUTTON_BACKGROUND_COLOR--HOVER: #eceff1 !default;
+$TERTIARY_BUTTON_BACKGROUND_COLOR--DISABLED: transparent !default;
+$TERTIARY_BUTTON_BORDER_COLOR: #bbbfc3 !default;
+$TERTIARY_BUTTON_TEXT_COLOR: #495560 !default;
+$TERTIARY_BUTTON_TEXT_COLOR--DISABLED: #bbbfc3 !default;
+
+//
+// MISC FIXTURES
+//
+$PRIMARY_CELL_UNREAD_INDICATOR_COLOR: #0091ea !default;
+
+///////////////////////////
+//  # DEPRECATED COLORS  //
+///////////////////////////
+//    * Phase out old colors from previous implementations here
+//    * This should only be destructive, marked for deletion items
+//    * This can be a rolling list, but once an item is on this list it cannot be editied, only removed.
+//    * No new references should be made to an item on this list.
+//    * If anything, remove instances of these colors when you find them
+
+/////////////////////////
+//  # OVERRIDE COLORS  //
+/////////////////////////
+//    * Use this sparingly, as a place to patch colors.
+//    * You're committing to properly integrating these as soon as you can.
+//    * Media queries may be involved here, but you can break stuff fast that way too.
+
+////////////////////////////
+//  # Provisional Colors  //
+////////////////////////////
+//    * Use this as a place to propose new colors in your current work.
+
+$colors: (
+  SYSTEM_BLUE: (
+    light: rgb(0, 122, 255),
+    dark: rgb(10, 132, 255)
+  ),
+  SYSTEM_GREEN: (
+    light: rgb(52, 199, 89),
+    dark: rgb(48, 209, 88)
+  ),
+  SYSTEM_INDIGO: (
+    light: rgb(88, 86, 214),
+    dark: rgb(94, 92, 230)
+  ),
+  SYSTEM_ORANGE: (
+    light: rgb(255, 149, 0),
+    dark: rgb(255, 159, 10)
+  ),
+  SYSTEM_PINK: (
+    light: rgb(255, 45, 85),
+    dark: rgb(255, 55, 95)
+  ),
+  SYSTEM_PURPLE: (
+    light: rgb(175, 82, 222),
+    dark: rgb(191, 90, 242)
+  ),
+  SYSTEM_RED: (
+    light: rgb(255, 59, 48),
+    dark: rgb(255, 69, 58)
+  ),
+  SYSTEM_TEAL: (
+    light: rgb(90, 200, 250),
+    dark: rgb(100, 210, 255)
+  ),
+  SYSTEM_YELLOW: (
+    light: rgb(255, 204, 0),
+    dark: rgb(255, 214, 10)
+  ),
+  SYSTEM_GRAY: (
+    light: rgb(142, 142, 147),
+    dark: rgb(142, 142, 147)
+  ),
+  SYSTEM_GRAY--HIGH-CONTRAST: (
+    light: rgb(108, 108, 112),
+    dark: rgb(142, 142, 147)
+  ),
+  SYSTEM_GRAY_2: (
+    light: rgb(174, 174, 178),
+    dark: rgb(174, 174, 178)
+  ),
+  SYSTEM_GRAY_3: (
+    light: rgb(199, 199, 204),
+    dark: rgb(72, 72, 74)
+  ),
+  SYSTEM_GRAY_4: (
+    light: rgb(209, 209, 214),
+    dark: rgb(58, 58, 60)
+  ),
+  SYSTEM_GRAY_5: (
+    light: rgb(229, 229, 234),
+    dark: rgb(44, 44, 46)
+  ),
+  SYSTEM_GRAY_6: (
+    light: rgb(242, 242, 247),
+    dark: rgb(28, 28, 30)
+  ),
+  // PUBLIC_APPLICATION_BACKGROUND_COLOR: (
+  //   light: #FFFFFF,
+  //   dark: #1D1E22,
+  // ),
+  // PUBLIC_SECONDARY_APPLICATION_BACKGROUND_COLOR: (
+  //   light: #FFFFFF,
+  //   dark: #1D1E22,
+  // ),
+  PUBLIC_APPLICATION_BACKGROUND_COLOR: (
+    light: #ECEFF1,
+    dark: #1D1E22,
+  ),
+
+  APPLICATION_BACKGROUND_COLOR: (
+    // light: #FFFFFF,
+    light: #ECEFF1,
+    dark: #1D1E22,
+  ),
+  SECONDARY_APPLICATION_BACKGROUND_COLOR: (
+    light: #E1E4E6,
+    dark: #333333,
+  ),
+  TERTIARY_APPLIATION_BACKGROUND_COLOR: (
+    light: #ECEFF1,
+    dark: #1D1E22,
+  ),
+  APPLICATION_BORDER_COLOR: (
+    light: #E3E4E9,
+    dark: #41444D,
+  ),
+
+  HEADER_BACKGROUND_GRADIENT: (
+    light: linear-gradient(275deg, darken($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 4.5) 0%, $PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR 84%, darken($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 5) 100%),
+    dark: linear-gradient(275deg, lighten($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 4.5) 0%, $PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR 84%, lighten($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 5) 100%)
+  ),
+  HEADER_BACKGROUND_GRADIENT--OPAQUE: (
+    light: linear-gradient(275deg, rgba(darken($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 4.5), 0.92) 0%, rgba($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 0.92) 84%, rgba(darken($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 5), 0.92) 100%),
+    dark: linear-gradient(275deg, rgba(lighten($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 6), 0.92) 0%, rgba($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 0.92) 84%, rgba(lighten($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 10), 0.92) 100%)
+  ),
+
+  LABEL_COLOR: (
+    light: #000000,
+    dark: #FFFFFF,
+  ),
+  LABEL_COLOR--INVERSE: (
+    light: #ffffff,
+    dark: #000000,
+  ),
+  SECONDARY_LABEL_COLOR: (
+    light: #495560,
+    dark: #ECEFF1,
+  ),
+  SECONDARY_LABEL_COLOR--INVERSE: (
+    light: #ECEFF1,
+    dark: #495560,
+  ),
+  TERTIARY_LABEL_COLOR: (
+    light: #8A8A8E,
+    dark: #8F8E94,
+  ),
+
+  CELL_BACKGROUND_COLOR: (
+    // light: #FFFFFF,
+    light: #FFFFFF,
+    dark: #000000,
+  ),
+
+  LINK_COLOR: (
+    light: #0091EA,
+    dark: #0098F5,
+  ),
+  LINK_COLOR--HOVER: (
+    light: #007CC8,
+    dark: #4FB3F1
+  ),
+  
+
+  // $PRIMARY_LINK_TEXT_COLOR: #0091EA !default;
+  // $PRIMARY_LINK_TEXT_COLOR--ACTIVE: #0091EA !default;
+  // $PRIMARY_LINK_TEXT_COLOR--FOCUS: #0091EA !default;
+  // $PRIMARY_LINK_TEXT_COLOR--HOVER: #00619E !default;
+  // $PRIMARY_DISABLED_LINK_TEXT_COLOR: #8F8E94 !default;
+  // $SECONDARY_LINK_TEXT_COLOR: #0091EA !default;
+  // $TERTIARY_LINK_TEXT_COLOR: #0091EA !default;
+  // $QUATERNARY_LINK_TEXT_COLOR: #0091EA !default;
+
+  INPUT_TEXT_COLOR--DISABLED: (
+    light: #495560,
+    dark: #ECEFF1,
+  ),
+  INPUT_PLACEHOLDER_COLOR--HOVER: (
+    light: #495560,
+    dark: #ECEFF1,
+  ),
+  INPUT_PLACEHOLDER_COLOR--DISABLED: (
+    light: #CCCCCC,
+    dark: #555555,
+  ),
+  INPUT_BACKGROUND_COLOR--FOCUS: (
+    light: #FFFFFF,
+    dark: #555555,
+  ),
+  INPUT_BACKGROUND_COLOR--DISABLED: (
+    light: #F5F8FA,
+    dark: #2B2B2B,
+  ),
+  INPUT_BORDER_COLOR: (
+    light: #CCCCCC,
+    dark: #8C8C8C,
+  ),
+  INPUT_BORDER_COLOR--HOVER: (
+    light: #0091EA,
+    dark: #0098F5,
+  ),
+  INPUT_BORDER_COLOR--FOCUS: (
+    light: #0091EA,
+    dark: #0098F5,
+  ),
+  INPUT_BORDER_COLOR--DISABLED: (
+    light: #F5F8FA,
+    dark: #2B2B2B,
+  ),
+  MODAL_BACKGROUND_COLOR: (
+    light: #F7FAFC,
+    dark: #333333,
+  ),
+  MODAL_HEADER_BACKGROUND_GRADIENT: (
+    light: #FFFFFF,
+    dark: #333333,
+  ),
+  MODAL_BORDER_COLOR: (
+    light: #CCCCCC,
+    dark: #555555,
+  ),
+  MODAL_HEADER_LABEL_COLOR: (
+    light: #ffffff,
+    dark: #ffffff,
+  ),
+  MODAL_HEADER_LINK_COLOR: (
+    light: #ffffff,
+    dark: #ffffff,
+  ),
+  MODAL_HEADER_LINK_COLOR--HOVER: (
+    light: #dddddd,
+    dark: #dddddd,
+  ),
+  // LINK_COLOR--HOVER: (
+  //   light: #007CC8,
+  //   dark: #4FB3F1
+  // ),
+
+  CARD_BACKGROUND_COLOR: (
+    light: #F7FAFC,
+    dark: #333333,
+  ),
+
+
+
+
+
+  // PRIMARY_CONTENT_BACKGROUND_COLOR: (
+  //   light: #FFFFFF,
+  //   dark: #333333,
+  // ),
+  SECONDARY_CONTENT_BACKGROUND_COLOR: (
+    light: #ECEFF1,
+    dark: #1D1E22,
+  ),
+  PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR: (
+    light: #0091EA,
+    dark: #FBAD35,
+  ),
+  PRIMARY_MODAL_HEADER_DECORATIVE_BACKGROUND_GRADIENT: (
+    light: linear-gradient(275deg, darken($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 6) 0%, $PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR 84%, darken($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 5) 100%),
+    dark: linear-gradient(275deg, lighten($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 6) 0%, $PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR 84%, lighten($PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR, 5) 100%),
+  ),
+  PRIMARY_MODAL_HEADER_TEXT_COLOR: (
+    light: #FFFFFF,
+    dark: #000000,
+  ),
+  INPUT_LABEL_TEXT_COLOR: (
+      light: #8F8E94,
+      dark: #A9A9A9
+  ),
+  INPUT_LABEL_TEXT_COLOR--DISABLED: (
+      light: lighten(#8F8E94, 20),
+      dark: #8C8C8C
+  ),
+  INPUT_LABEL_TEXT_COLOR--HOVER: (
+      light: #0091EA,
+      dark: invert(#0091EA)
+  ),
+  PRIMARY_BODY_TEXT_COLOR: (
+    light: #001A33,
+    dark: #FFFFFF
+  ),
+);
+
+@function getThematicValue($value, $key) {
+  @return map-get(map-get($colors, $value), "#{$key}");
+}
+
+@mixin applyThematically($property, $value) {
+  #{$property}: getThematicValue($value, "light");
+  @content;
+  @media (prefers-color-scheme: dark) {
+    #{$property}: getThematicValue($value, "dark");
+  }
+}
+
+/**
+ * Calculate the luminance for a color.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+@function luminance($color) {
+  $red: nth($linear-channel-values, red($color) + 1);
+  $green: nth($linear-channel-values, green($color) + 1);
+  $blue: nth($linear-channel-values, blue($color) + 1);
+
+  @return 0.2126 * $red + 0.7152 * $green + 0.0722 * $blue;
+}
+
+/**
+ * Calculate the contrast ratio between two colors.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+@function contrast($back, $front) {
+  $backLum: luminance($back) + 0.05;
+  $foreLum: luminance($front) + 0.05;
+  $contrast: max($backLum, $foreLum) / min($backLum, $foreLum);
+  // @debug $contrast;
+  @return $contrast;
+}
+
+/**
+ * Determine whether to use dark or light text on top of given color.
+ * Returns black for dark text and white for light text.
+ */
+@function chooseContrastingColor($color) {
+  $primaryContrast: contrast($color, white);
+  $fallbackContrast: contrast($color, black);
+
+  @if ($primaryContrast > 3) {
+    @return white;
+  } @else {
+    @return black;
+  }
+}
+
+@function getHighestContrast($baseColor) {
+  @if (lightness($baseColor) > 50) {
+    @return #000000; // Lighter backgorund, return dark color
+  } @else {
+    @return #ffffff; // Darker background, return light color
+  }
+}
+
+// @mixin apply_thematically($property, $value) {
+//   #{$property}: $#{$value};
+// }
+// $themes: (
+//         default: (
+//                 // logo: url("../images/brand/logo_vertical.svg"),
+//                 // bg: $bg--light,
+//                 card-bg: #00ff00,
+//                 // text: $text--light,
+//                 // text-secondary: $text--2--light,
+//                 // link: $brand--blue--light,
+//                 // hover: $hover--light,
+//                 // border: $border--light
+//         ),
+//         dark: (
+//                 // logo: url("../images/brand/logo_vertical--invert.svg"),
+//                 // bg: linear-gradient($bg--dark--top, $bg--dark--bottom),
+//                 card-bg: #fbad35,
+//                 // text: $text--dark,
+//                 // text-secondary: $text--2--dark,
+//                 // link: $brand--blue--dark,
+//                 // hover: $hover--dark,
+//                 // border: $border--dark
+//         ),
+// );
+// @mixin oldApplyThematically() {
+//   // A modified set of the following:
+//   // https://medium.com/@katiemctigue/how-to-create-a-dark-mode-in-sass-609f131a3995
+//   @each $theme, $map in $themes {
+//     // .theme--#{$theme} & {
+//       $theme-map: () !global;
+//       @each $key, $submap in $map {
+//         $value: map-get(map-get($themes, $theme), '#{$key}');
+//         $theme-map: map-merge($theme-map, ($key: $value)) !global;
+//       }
+//       @content;
+//       $theme-map: null !global;
+//     // }
+//   }
+// }
+
+// @function oldGetThematicValue($key) {
+//   @return map-get($theme-map, $key);
+// }
+
+//  https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796
+//  https://www.sassmeister.com/gist/ccc72f71137fe29039c92c0a9fe9b657
+//  Precomputed linear color channel values, for use in contrast calculations.
+//  See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+//
+//  Algorithm, for c in 0 to 255:
+//  f(c) {
+//    c = c / 255;
+//    return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+//  }
+//
+//  This lookup table is needed since there is no `pow` in SASS.
+$linear-channel-values: 0 0.0003035269835488375 0.000607053967097675
+  0.0009105809506465125 0.00121410793419535 0.0015176349177441874
+  0.001821161901293025 0.0021246888848418626 0.0024282158683907
+  0.0027317428519395373 0.003035269835488375 0.003346535763899161
+  0.003676507324047436 0.004024717018496307 0.004391442037410293
+  0.004776953480693729 0.005181516702338386 0.005605391624202723
+  0.006048833022857054 0.006512090792594475 0.006995410187265387
+  0.007499032043226175 0.008023192985384994 0.008568125618069307
+  0.009134058702220787 0.00972121732023785 0.010329823029626936
+  0.010960094006488246 0.011612245179743885 0.012286488356915872
+  0.012983032342173012 0.013702083047289686 0.014443843596092545
+  0.01520851442291271 0.01599629336550963 0.016807375752887384
+  0.017641954488384078 0.018500220128379697 0.019382360956935723
+  0.0202885630566524 0.021219010376003555 0.022173884793387385
+  0.02315336617811041 0.024157632448504756 0.02518685962736163
+  0.026241221894849898 0.027320891639074894 0.028426039504420793
+  0.0295568344378088 0.030713443732993635 0.03189603307301153
+  0.033104766570885055 0.03433980680868217 0.03560131487502034
+  0.03688945040110004 0.0382043715953465 0.03954623527673284 0.04091519690685319
+  0.042311410620809675 0.043735029256973465 0.04518620438567554
+  0.046665086336880095 0.04817182422688942 0.04970656598412723
+  0.05126945837404324 0.052860647023180246 0.05448027644244237
+  0.05612849004960009 0.05780543019106723 0.0595112381629812 0.06124605423161761
+  0.06301001765316767 0.06480326669290577 0.06662593864377289
+  0.06847816984440017 0.07036009569659588 0.07227185068231748
+  0.07421356838014963 0.07618538148130785 0.07818742180518633
+  0.08021982031446832 0.0822827071298148 0.08437621154414882 0.08650046203654976
+  0.08865558628577294 0.09084171118340768 0.09305896284668745 0.0953074666309647
+  0.09758734714186246 0.09989872824711389 0.10224173308810132
+  0.10461648409110419 0.10702310297826761 0.10946171077829933 0.1119324278369056
+  0.11443537382697373 0.11697066775851084 0.11953842798834562
+  0.12213877222960187 0.12477181756095049 0.12743768043564743 0.1301364766903643
+  0.13286832155381798 0.13563332965520566 0.13843161503245183
+  0.14126329114027164 0.14412847085805777 0.14702726649759498
+  0.14995978981060856 0.15292615199615017 0.1559264637078274 0.1589608350608804
+  0.162029375639111 0.1651321945016676 0.16826940018969075 0.1714411007328226
+  0.17464740365558504 0.17788841598362912 0.18116424424986022 0.184474994500441
+  0.18782077230067787 0.19120168274079138 0.1946178304415758 0.19806931955994886
+  0.20155625379439707 0.20507873639031693 0.20863687014525575
+  0.21223075741405523 0.21586050011389926 0.2195261997292692 0.2232279573168085
+  0.22696587351009836 0.23074004852434915 0.23455058216100522 0.238397573812271
+  0.24228112246555486 0.24620132670783548 0.25015828472995344
+  0.25415209433082675 0.2581828529215958 0.26225065752969623 0.26635560480286247
+  0.2704977910130658 0.27467731206038465 0.2788942634768104 0.2831487404299921
+  0.2874408377269175 0.29177064981753587 0.2961382707983211 0.3005437944157765
+  0.3049873140698863 0.30946892281750854 0.31398871337571754 0.31854677812509186
+  0.32314320911295075 0.3277780980565422 0.33245153634617935 0.33716361504833037
+  0.3419144249086609 0.3467040563550296 0.35153259950043936 0.3564001441459435
+  0.3613067797835095 0.3662525955988395 0.3712376804741491 0.3762621229909065
+  0.38132601143253014 0.386429433787049 0.39157247774972326 0.39675523072562685
+  0.4019777798321958 0.4072402119017367 0.41254261348390375 0.4178850708481375
+  0.4232676699860717 0.4286904966139066 0.43415363617474895 0.4396571738409188
+  0.44520119451622786 0.45078578283822346 0.45641102318040466 0.4620769996544071
+  0.467783796112159 0.47353149614800955 0.4793201831008268 0.4851499400560704
+  0.4910208498478356 0.4969329950608704 0.5028864580325687 0.5088813208549338
+  0.5149176653765214 0.5209955732043543 0.5271151257058131 0.5332764040105052
+  0.5394794890121072 0.5457244613701866 0.5520114015120001 0.5583403896342679
+  0.5647115057049292 0.5711248294648731 0.5775804404296506 0.5840784178911641
+  0.5906188409193369 0.5972017883637634 0.6038273388553378 0.6104955708078648
+  0.6172065624196511 0.6239603916750761 0.6307571363461468 0.6375968739940326
+  0.6444796819705821 0.6514056374198242 0.6583748172794485 0.665387298282272
+  0.6724431569576875 0.6795424696330938 0.6866853124353135 0.6938717612919899
+  0.7011018919329731 0.7083757798916868 0.7156935005064807 0.7230551289219693
+  0.7304607400903537 0.7379104087727308 0.7454042095403874 0.7529422167760779
+  0.7605245046752924 0.768151147247507 0.7758222183174236 0.7835377915261935
+  0.7912979403326302 0.799102738014409 0.8069522576692516 0.8148465722161012
+  0.8227857543962835 0.8307698767746546 0.83879901174074 0.846873231509858
+  0.8549926081242338 0.8631572134541023 0.8713671191987972 0.8796223968878317
+  0.8879231178819663 0.8962693533742664 0.9046611743911496 0.9130986517934192
+  0.9215818562772946 0.9301108583754237 0.938685728457888 0.9473065367331999
+  0.9559733532492861 0.9646862478944651 0.9734452903984125 0.9822505503331171
+  0.9911020971138298 1;

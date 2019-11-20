@@ -1,0 +1,215 @@
+// # Block
+// Returns the provided ruleset within an block-level selector defined
+// at the root of the generated CSS document. Block level selectors are
+// rendered as class-defined, fully qualified BEM notation:
+// `.block-name { … };`
+//
+// ## Usage
+//
+// ``` scss
+// @include block("`block-name`") {
+//  `content`
+// };
+// ```
+//
+// ### Parameters
+// `$block-name`: *required* string, namespaced
+//
+@mixin block($block-name) {
+  // We use `@at-root` to ensure that this will be a globally available
+  // reference regardless of if it is imported within a nest or not.
+  @at-root {
+    .#{$block-name} {
+      @content;
+    }
+  }
+}
+
+// # Element
+// Returns the provided ruleset within an element-level selector.
+// Element level selectors are rendered as class-defined,
+// fully qualified BEM notation: `.block-name__element-name { … };`
+//
+// > Note: Element mixins must be included (`@include`) from within a
+// > `block` reference.
+//
+// ## Usage
+//
+// ``` scss
+// @include element("`element-name`") {
+//  `content`
+// };
+// ```
+//
+// ### Parameters
+// `$element-name`: *required* string, namespaced
+//
+@mixin element($this-element) {
+  &__#{$this-element} {
+    @content;
+  }
+}
+
+// # Modifier
+// Returns the provided ruleset within an modifier-level selector.
+// Modifier level selectors are rendered as class-defined,
+// fully qualified BEM notation: `.block-name--modifier-name;`,
+// `.block-name__element-name--modifier-name;`
+//
+// > Note: Modifier mixins must be included (`@include`) from within
+// > a `block` or `element` reference.
+//
+// ## Usage
+//
+// ``` scss
+// @include modifier("`modifier-name`") {
+//  `content`
+// };
+// ```
+//
+// ### Parameters
+// `$modifier-name`: *required* string, namespaced
+//
+@mixin modifier($modifier-name) {
+  &--#{$modifier-name} {
+    @content;
+  }
+}
+
+// # CSS3 Pseudo Class
+// Returns the provided ruleset within a pseudo-class selector.
+// Pseudo Class selectors are rendered as class-defined,
+// fully qualified BEM notation:  `.block-name:pseudo-class;`,
+// `.block-name__element-name:pseudo-class;`,
+// `.block-name__element-name--modifier-name:pseudo-class;`
+//
+// This mixin can be used on the block, element or modifier level.
+//
+// [ ] Bugfix: Currently, this does not support a set of values for a parameter
+//   > As a workaround, you can just reference this mixin with a fully resolved
+//   > string (including the value for your parameter) and it will render with
+//   > that string unmodified. This will need to be fixed before we validate, or
+//   > do any work that will need to process the value for `pseduo-class`
+// [ ] Todo: Allow flag for hard-forcing a specific string through
+// [ ] Todo: Validate parameters passed
+// [ ] Todo: Provide requesting user-agent specific versions in a nice way
+//
+// ## Usage
+//
+// ``` scss
+// @include css3-pseudo-class("`pseudo-class`") {
+//  `content`
+// };
+// ```
+//
+// ### Parameters
+// `$pseudo-class`: *required* string, valid [CSS 3 pseudo class](https://www.w3schools.com/css/css_pseudo_classes.asp)
+//
+@mixin css3-pseudo-class(
+  $pseudo-class,
+  $fully-qualified-pseudo-class: none,
+  $validate: true
+) {
+  $valid-css3-pseudo-classes: "active", "checked", "disabled", "empty",
+    "enabled", "first-child", "first-of-type", "focus", "hover", "in-range",
+    "invalid", "lang(language)" "last-child", "last-of-type", "not(selector)",
+    "nth-child(n)", "nth-last-child(n)", "nth-last-of-type(n)", "nth-of-type(n)",
+    "only-of-type", "only-child", "optional", "out-of-range", "read-only",
+    "read-write", "required", "root", "root", "target", "valid";
+  &:#{$pseudo-class} {
+    @content;
+  }
+}
+
+// @function declareElement($this-element) {
+//   @return map-get(map-get($colors, $value), "#{$key}");
+// }
+
+@function getFromSelector($aspect, $selector) {
+  $aspect: "block";
+
+  @if $aspect == "block" {
+    @return getBlockFromSelector($selector);
+  } @else if $aspect == "element" {
+    @return getBlockFromSelector($selector);
+  } @else if $aspect == "modifier" {
+    @return getBlockFromSelector($selector);
+  } @else {
+    @return $selector;
+  }
+}
+
+@function getBlockFromSelector($selector) {
+  // does not strip selectors yet
+  // Prefix just assumes a single class selector
+  $element-divider-index: str-index($selector, "__");
+  $modifier-divider-index: str-index($selector, "--");
+  $pseudo-class-divider-index: str-index($selector, ":");
+
+  @if $element-divider-index != null {
+    $block: str-slice($selector, 2, $element-divider-index - 1);
+    @return $block;
+  } @else if $modifier-divider-index != null {
+    $block: str-slice($selector, 2, $modifier-divider-index - 1);
+    @return $block;
+  } @else if $pseudo-class-divider-index != null {
+    $block: str-slice($selector, 2, $pseudo-class-divider-index - 1);
+    @return $block;
+  } @else {
+    @return $selector;
+  }
+}
+
+@mixin bindElementModifier($element, $modifier) {
+  $parent-selctor: quote(&);
+
+  $block: getFromSelector("block", $parent-selctor);
+
+  .#{$block}__#{$element} {
+    @extend .#{$block}__#{$element}--#{$modifier};
+  }
+}
+
+// This is an intersting use of targeting, but idk if it will work in practice
+// @mixin bindElementModifier($element, $modifier) {
+//   *[class$="__#{$element}"] {
+//     background-color: #fbad35;
+//   }
+// }
+
+@mixin import__font--google-fonts($fonts...) {
+  $url: "https://fonts.googleapis.com/css?family=";
+  $weights: ":300,400,500,700";
+  $nb: 0;
+  @each $font-name in $fonts {
+    $nb: $nb + 1;
+    $nb-word: 0;
+    @each $word in $font-name {
+      $nb-word: $nb-word + 1;
+      $url: $url + $word;
+      @if $nb-word < length($font-name) {
+        $url: $url + "+";
+      }
+    }
+    $url: $url + $weights;
+    @if $nb < length($fonts) {
+      $url: $url + "|";
+    }
+  }
+  @import url(#{$url});
+}
+
+@function urlFriendlyColor($color) {
+  @return "%23" + str-slice("#{$color}", 2, -1);
+}
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+@function to-string($value) {
+  @return inspect($value);
+}

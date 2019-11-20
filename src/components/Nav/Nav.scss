@@ -1,14 +1,14 @@
-.nav {
+@include block("nav") {
   position: fixed;
   width: 100%;
   left: 0;
   top: 0;
-  background: $primaryColor;
+  background: $PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR;
   display: block;
   height: $nav-height;
   z-index: 1000;
 
-  &__spacer {
+  @include element("spacer") {
     width: 100%;
     position: relative;
     top: 0;
@@ -16,51 +16,54 @@
     z-index: 1;
   }
 
-  // Logo
-  &__logo {
+  @include element("logo") {
     width: $nav-height;
   }
 
   // Nav Menu (react-burger-menu)
-  &__menu {
-    background: grey;
+  @include element("menu-wrapper") {
+    top: 0;
+  }
+
+  @include element("menu") {
+    @include applyThematically(background-color, MODAL_BACKGROUND_COLOR);
     padding: 2.5em 1.5em 0;
     font-size: 1.35em;
   }
 
-  &__menu-item {
+  @include element("menu-item") {
     padding: 0.5em;
-    color: white;
     text-decoration: none;
+    @include applyThematically(color, LABEL_COLOR);
   }
 
-  &__menu-burger-button {
+  @include element("menu-burger-button") {
     position: fixed;
-    width: 40px;
-    height: 35px;
-    right: 15px;
-    top: 11px;
-    color: red;
+    width: 24px;
+    height: 21px;
+    right: ($nav-height - 24px) / 2;
+    top: ($nav-height - 24px) / 2;
   }
 
-  &__menu-burger-bar {
-    background: white;
+  @include element("menu-burger-bar") {
+    background: $PRIMARY_MODAL_HEADER_TEXT_COLOR;
   }
 
-  &__menu-cross {
-    background: #bdc3c7;
+  @include element("menu-cross") {
+    @include applyThematically(background-color, LABEL_COLOR);
   }
 
-  &__menu-cross-button {
+  @include element("menu-cross-button") {
     height: 24px;
     width: 24px;
   }
 
-  &__menu-item-list {
-    color: #b8b7ad;
+  @include element("menu-item-list") {
+    @include applyThematically(color, LABEL_COLOR);
   }
 
-  &__menu-overlay {
+  @include element("menu-overlay") {
+    top: 0;
     background: rgba(0, 0, 0, 0.3);
   }
 }

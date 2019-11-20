@@ -1,13 +1,115 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+@include import__font--google-fonts($font-primary);
+html {
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 300;
+  color: $PRIMARY_BODY_TEXT_COLOR;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  font-family: $font-primary;
+  font-size: 1em;
+  line-height: 1.4375em;
+  margin: auto;
+}
+
+p,
+ul,
+ol,
+pre,
+table,
+blockquote {
+  margin-top: 0em;
+  // margin-bottom: 1.4375em;
+}
+
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+
+/* Let's make sure all's aligned */
+
+hr {
+  border: 1px solid;
+  margin: -1px 0;
+}
+
+b,
+i,
+strong,
+em,
+small,
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  line-height: 0;
+}
+
+sub,
+sup {
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+@media #{$query__md-above} {
+  body {
+    font-family: sans-serif;
+    font-size: 1em;
+    line-height: 1.3125em;
+    margin: auto;
+  }
+  p,
+  ul,
+  ol,
+  pre,
+  table,
+  blockquote {
+    margin-top: 0em;
+    // margin-bottom: 1.3125em;
+  }
+  ul ul,
+  ol ol,
+  ul ol,
+  ol ul {
+    margin-top: 0em;
+    margin-bottom: 0em;
+  }
+  /* Let's make sure all's aligned */
+  hr {
+    border: 1px solid;
+    margin: -1px 0;
+  }
+  a,
+  b,
+  i,
+  strong,
+  em,
+  small,
+  code {
+    // line-height: 0;
+  }
+  sub,
+  sup {
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  sup {
+    top: -0.5em;
+  }
+  sub {
+    bottom: -0.25em;
+  }
 }
