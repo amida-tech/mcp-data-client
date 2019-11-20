@@ -16,15 +16,12 @@ const Nav: React.FC = () => {
   return (
     <div className="nav-wrapper">
       <nav className="nav">
-        <Link
-          to="/"
-          className={"nav__logo-container"}
-        >
+        <Link to="/" className={"nav__logo-container"}>
           <img className={"nav__logo"} src={navLogo} alt="logo" />
         </Link>
         <Menu
           right
-          className={"menu"}
+          className={"nav__menu-wrapper"}
           isOpen={menuOpen}
           menuClassName={"nav__menu"}
           itemClassName={"nav__menu-item"}
@@ -34,12 +31,9 @@ const Nav: React.FC = () => {
           crossClassName={"nav__menu-cross"}
           itemListClassName={"nav__menu-item-list"}
           overlayClassName={"nav__menu-overlay"}
-          onStateChange={(state) => handleStateChange(state)}
+          onStateChange={state => handleStateChange(state)}
         >
-          <Link
-            to="/app/rating"
-            onClick={() => setMenuOpen(false)}
-          >
+          <Link to="/app/rating" onClick={() => setMenuOpen(false)}>
             {"Go to Rating Page"}
           </Link>
         </Menu>
