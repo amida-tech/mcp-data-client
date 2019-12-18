@@ -1,0 +1,40 @@
+@include block("upload-page") {
+  text-align: center;
+
+  @include element("header") {
+    height: calc(15vh - #{$nav-height});
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+  }
+
+  @include element("export-form") {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @include element("file-instructions") {
+    font-weight: bold;
+  }
+
+  @include element("file-input") {
+    border: 1px solid $PRIMARY_INPUT_BORDER_COLOR;
+    border-radius: 2px;
+    margin-top: 0.5em;
+    padding: 0.3em;
+    border-radius: 4px;
+    width: 80%;
+  }
+
+  @include element("file-button") {
+    background: $PRIMARY_BUTTON_BACKGROUND_COLOR;
+    border: 1px solid $PRIMARY_BUTTON_BORDER_COLOR;
+    color: $PRIMARY_BUTTON_TEXT_COLOR;
+    margin-top: 0.5em;
+    padding: 0.5em;
+    border-radius: 4px;
+  }
+}

@@ -33,9 +33,7 @@ const RatingPage: React.FC = () => {
         <button onClick={() => refetch()}>{"Fetch Rating"}</button>
         <div>{`The rating value is: ${data && data.rating.value}`}</div>
         <div>
-          <Link to={"/app"}>
-            {"Go to back to Home Page"}
-          </Link>
+          <Link to={"/app"}>{"Go to back to Home Page"}</Link>
         </div>
       </header>
     </div>

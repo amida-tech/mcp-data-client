@@ -1,10 +1,11 @@
 {
-  "name": "amida-react-skeleton-graphql",
+  "name": "mcp-data-client",
   "version": "0.1.0",
-  "author": "Grant Orndorff <grant@amida.com>",
+  "author": "James Fadeley <james@amida.com>",
   "contributors": [
     "Alan Thompson <alan@amida.com>",
-    "Elijah George <elijah@amida.com>"
+    "Elijah George <elijah@amida.com>",
+    "Grant Orndorff <grant@amida.com>"
   ],
   "private": true,
   "dependencies": {
