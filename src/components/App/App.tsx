@@ -8,6 +8,8 @@ import {
 import { ApolloProvider } from "@apollo/react-hooks";
 import client from "../../services/ApolloClient";
 import AppRoot from "../AppRoot/AppRoot";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Routes = () => {
   return (
@@ -21,6 +23,7 @@ export const Routes = () => {
 const App: React.FC = () => {
   return (
     <ApolloProvider client={client}>
+      <ToastContainer progressClassName="toastify__progress" />
       <Router>
         <Routes />
       </Router>

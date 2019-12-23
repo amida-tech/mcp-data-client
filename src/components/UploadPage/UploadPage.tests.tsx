@@ -6,13 +6,13 @@ import UploadPage from "./UploadPage";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
-  const ratingPage = () => {
+  const uploadPage = () => {
     return (
       <ApolloProvider client={client}>
         <UploadPage />
       </ApolloProvider>
     );
   };
-  ReactDOM.render(ratingPage(), div);
+  ReactDOM.render(uploadPage(), div);
   ReactDOM.unmountComponentAtNode(div);
 });
