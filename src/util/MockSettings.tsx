@@ -5,7 +5,7 @@ import { Outcome } from "./Constants";
  */
 
 // If you need unique rejections, write them as part of the extended service.
-export default class MockSettings {
+export abstract class MockSettings {
   private _outcomeSetting: Outcome = Outcome.SUCCESS;
   private _outcomeResult: object = {};
 
@@ -31,11 +31,9 @@ export default class MockSettings {
         status: 401
       })
     );
-    expect(callSpy).toBeCalled();
   }
 
   defaultFailure(callSpy: jest.SpyInstance) {
     callSpy.mockResolvedValue(Promise.reject());
-    expect(callSpy).toBeCalled();
   }
 }
