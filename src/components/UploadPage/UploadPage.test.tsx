@@ -42,11 +42,13 @@ describe("Component: UploadPage", () => {
     );
     const wrapper = shallow(<UploadPage />);
     expect(wrapper.state("loading")).toBe(false);
+    expect(wrapper.state("uploadMessage")).toEqual("");
     wrapper.find(".upload-page__file-input").simulate("change", testEvent);
     expect(wrapper.state("loading")).toBe(true);
+    expect(wrapper.state("uploadMessage")).toEqual("");
     expect(callSpy).toHaveBeenCalled();
     mockDataService.setOutcomeAwait(false);
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
     expect(wrapper.state("loading")).toBe(false);
     expect(wrapper.state("uploadMessage")).toEqual("Upload success.");
   });
@@ -60,11 +62,13 @@ describe("Component: UploadPage", () => {
     );
     const wrapper = shallow(<UploadPage />);
     expect(wrapper.state("loading")).toBe(false);
+    expect(wrapper.state("uploadMessage")).toEqual("");
     wrapper.find(".upload-page__file-input").simulate("change", testEvent);
     expect(wrapper.state("loading")).toBe(true);
+    expect(wrapper.state("uploadMessage")).toEqual("");
     expect(callSpy).toHaveBeenCalled();
     mockDataService.setOutcomeAwait(false);
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
     expect(wrapper.state("loading")).toBe(false);
     expect(wrapper.state("uploadMessage")).toEqual(
       "Failed to upload. Something is wrong with the endpoint."

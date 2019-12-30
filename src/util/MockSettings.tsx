@@ -9,7 +9,7 @@ export abstract class MockSettings {
   private _outcomeSetting: Outcome = Outcome.SUCCESS;
   private _outcomeResult: object = {};
   private _outcomeDelay: number = 0; // Use to loading displays out timeouts.
-  private _outcomeAwait: boolean = false;
+  private _outcomeAwait: boolean = false; // Similar but checks for "go ahead."
 
   setOutcomeSetting(setting: Outcome) {
     this._outcomeSetting = setting;
@@ -57,7 +57,7 @@ export abstract class MockSettings {
     } else if (this._outcomeAwait) {
       const check = setInterval(() => {
         let timesRun = 0;
-        if (!this._outcomeAwait || timesRun > 5) {
+        if (!this._outcomeAwait || timesRun > 10) {
           clearInterval(check);
           timesRun += 1;
         }
