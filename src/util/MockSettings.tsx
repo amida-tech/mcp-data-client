@@ -23,8 +23,12 @@ export abstract class MockSettings {
     this._outcomeDelay = time;
   }
 
-  async setOutcomeAwait(flip: boolean) {
+  // When setting to false, you should await this function.
+  setOutcomeAwait(flip: boolean) {
     this._outcomeAwait = flip;
+    if (!flip) {
+      return new Promise(resolve => setTimeout(resolve, 2000));
+    }
   }
 
   get outcomeSetting(): Outcome {
