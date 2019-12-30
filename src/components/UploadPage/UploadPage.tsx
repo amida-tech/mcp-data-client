@@ -67,7 +67,9 @@ class UploadPage extends React.Component<Props, State> {
         ) : (
           ""
         )}
-        {this.state.uploadMessage}
+        <div className="upload-page__upload-info">
+          {this.state.uploadMessage}
+        </div>
       </div>
     );
   }

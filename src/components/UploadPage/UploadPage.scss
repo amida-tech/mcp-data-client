@@ -35,6 +35,10 @@
     font-weight: bolder;
   }
 
+  @include element("upload-info") {
+    margin-top: 0.5em;
+  }
+
   @keyframes blinkingText {
     0% {
       color: $PRIMARY_BODY_TEXT_COLOR;
