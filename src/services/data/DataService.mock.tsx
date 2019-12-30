@@ -34,6 +34,7 @@ export class MockDataService extends MockSettings {
         })
       );
     }
+    this.delayResponse();
     return callSpy;
   }
 }

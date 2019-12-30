@@ -1,18 +1,19 @@
 import React from "react";
-import { toast } from "react-toastify";
 import { DataService } from "../../services/data/DataService";
 
 type Props = {};
 
 interface State {
   loading: Boolean;
+  uploadMessage: string;
 }
 
 class UploadPage extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      loading: false
+      loading: false,
+      uploadMessage: ""
     };
     this.onUploadFile = this.onUploadFile.bind(this);
   }
@@ -27,18 +28,22 @@ class UploadPage extends React.Component<Props, State> {
         filename
       })
         .then(response => {
-          if (response.status !== 200) {
+          if (response.status !== 204) {
             // A response of *any* kind is technically success.
-            toast("Failed to upload. Something is wrong with the endpoint.");
-            this.setState({ loading: false });
+            this.setState({
+              loading: false,
+              uploadMessage:
+                "Failed to upload. Something is wrong with the endpoint."
+            });
             return;
           }
-          toast("Upload success.");
-          this.setState({ loading: false });
+          this.setState({ loading: false, uploadMessage: "Upload success." });
         })
         .catch(() => {
-          toast("Failed to upload due to connectivity issues.");
-          this.setState({ loading: false });
+          this.setState({
+            loading: false,
+            uploadMessage: "Failed to upload due to connectivity issues."
+          });
         });
     }
   };
@@ -62,6 +67,7 @@ class UploadPage extends React.Component<Props, State> {
         ) : (
           ""
         )}
+        {this.state.uploadMessage}
       </div>
     );
   }

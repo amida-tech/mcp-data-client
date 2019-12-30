@@ -10,6 +10,13 @@ import { Outcome } from "../../util/Constants";
 
 configure({ adapter: new Adapter() });
 
+const testEvent = {
+  target: {
+    files: ["thetestfile.doc"]
+  },
+  preventDefault: () => {}
+};
+
 describe("Component: UploadPage", () => {
   const mockDataService = new MockDataService();
 
@@ -26,35 +33,41 @@ describe("Component: UploadPage", () => {
     ReactDOM.unmountComponentAtNode(div);
   });
 
-  it("is successful in its attempts to upload a file", () => {
-    mockDataService.setOutcomeSetting(Outcome.REJECT);
+  it("is successful in its attempts to upload a file", async () => {
+    mockDataService.setOutcomeSetting(Outcome.SUCCESS);
+    mockDataService.setOutcomeAwait(true);
     const callSpy = mockDataService.postMultipartRequest(
       {},
       "" + process.env.REACT_APP_MCP_DATA_SOURCE
     );
     const wrapper = shallow(<UploadPage />);
-    wrapper.find(".upload-page__file-input").simulate("change", {
-      target: {
-        files: ["thetestfile.doc"]
-      },
-      preventDefault: () => {}
-    });
+    expect(wrapper.state("loading")).toBe(false);
+    wrapper.find(".upload-page__file-input").simulate("change", testEvent);
+    expect(wrapper.state("loading")).toBe(true);
     expect(callSpy).toHaveBeenCalled();
+    mockDataService.setOutcomeAwait(false);
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    expect(wrapper.state("loading")).toBe(false);
+    expect(wrapper.state("uploadMessage")).toEqual("Upload success.");
   });
 
-  it("is rejected in it attempts to upload a file", () => {
+  it("is rejected in it attempts to upload a file", async () => {
     mockDataService.setOutcomeSetting(Outcome.REJECT);
+    mockDataService.setOutcomeAwait(true);
     const callSpy = mockDataService.postMultipartRequest(
       {},
       "" + process.env.REACT_APP_MCP_DATA_SOURCE
     );
     const wrapper = shallow(<UploadPage />);
-    wrapper.find(".upload-page__file-input").simulate("change", {
-      target: {
-        files: ["thetestfile.doc"]
-      },
-      preventDefault: () => {}
-    });
+    expect(wrapper.state("loading")).toBe(false);
+    wrapper.find(".upload-page__file-input").simulate("change", testEvent);
+    expect(wrapper.state("loading")).toBe(true);
     expect(callSpy).toHaveBeenCalled();
+    mockDataService.setOutcomeAwait(false);
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    expect(wrapper.state("loading")).toBe(false);
+    expect(wrapper.state("uploadMessage")).toEqual(
+      "Failed to upload. Something is wrong with the endpoint."
+    );
   });
 });
