@@ -7,6 +7,11 @@ interface State {
   loading: Boolean;
   uploadNotice: string;
   message: string;
+  fileReport: FileReport;
+}
+
+interface FileReport {
+  [key: string]: any;
 }
 
 class UploadPage extends React.Component<Props, State> {
@@ -15,7 +20,8 @@ class UploadPage extends React.Component<Props, State> {
     this.state = {
       loading: false,
       uploadNotice: "",
-      message: ""
+      message: "",
+      fileReport: {}
     };
     this.onUploadFile = this.onUploadFile.bind(this);
   }
@@ -36,21 +42,24 @@ class UploadPage extends React.Component<Props, State> {
               loading: false,
               uploadNotice:
                 "Failed to upload. Something is wrong with the endpoint.",
-              message: response.message
+              message: response.message,
+              fileReport: response.fileReport
             });
             return;
           }
           this.setState({
             loading: false,
             uploadNotice: "Upload success.",
-            message: response.message
+            message: response.message + ":",
+            fileReport: response.fileReport
           });
         })
         .catch(() => {
           this.setState({
             loading: false,
             uploadNotice: "Failed to upload due to connectivity issues.",
-            message: ""
+            message: "",
+            fileReport: {}
           });
         });
     }
@@ -79,7 +88,24 @@ class UploadPage extends React.Component<Props, State> {
         <div className="upload-page__upload-notice">
           {this.state.uploadNotice}
         </div>
-        <div className="upload-page__message">{this.state.message}</div>
+        <div className="upload-page__file-report">
+          <span className="upload-page__file-message">
+            {this.state.message}
+          </span>
+          {this.state.fileReport ? (
+            <div className="upload-page__file-breakdown">
+              {Object.keys(this.state.fileReport).map(
+                (reportKey: string, index: number) => (
+                  <div key={`upload-page-file-report-${index}`}>
+                    {this.state.fileReport[reportKey]}
+                  </div>
+                )
+              )}
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     );
   }

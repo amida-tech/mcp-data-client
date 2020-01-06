@@ -36,7 +36,16 @@
   }
 
   @include element("upload-notice") {
-    margin-top: 0.5em;
+    margin: 0.5em 0;
+  }
+
+  @include element("file-report") {
+    white-space: pre-wrap;
+    margin: 0 25%;
+  }
+
+  @include element("file-message") {
+    font-size: 1.2em;
   }
 
   @keyframes blinkingText {
