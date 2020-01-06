@@ -5,7 +5,8 @@ type Props = {};
 
 interface State {
   loading: Boolean;
-  uploadMessage: string;
+  uploadNotice: string;
+  message: string;
 }
 
 class UploadPage extends React.Component<Props, State> {
@@ -13,7 +14,8 @@ class UploadPage extends React.Component<Props, State> {
     super(props);
     this.state = {
       loading: false,
-      uploadMessage: ""
+      uploadNotice: "",
+      message: ""
     };
     this.onUploadFile = this.onUploadFile.bind(this);
   }
@@ -22,27 +24,33 @@ class UploadPage extends React.Component<Props, State> {
     event.preventDefault();
     if (event.target.files && event.target.files[0]) {
       const filename = event.target.files[0].name;
-      this.setState({ loading: true });
+      this.setState({ loading: true, uploadNotice: "", message: "" });
       DataService.postMultipartRequest({
         file: event.target.files[0],
         filename
       })
         .then(response => {
-          if (response.status !== 204) {
+          if (response.status !== 200) {
             // A response of *any* kind is technically success.
             this.setState({
               loading: false,
-              uploadMessage:
-                "Failed to upload. Something is wrong with the endpoint."
+              uploadNotice:
+                "Failed to upload. Something is wrong with the endpoint.",
+              message: response.message
             });
             return;
           }
-          this.setState({ loading: false, uploadMessage: "Upload success." });
+          this.setState({
+            loading: false,
+            uploadNotice: "Upload success.",
+            message: response.message
+          });
         })
         .catch(() => {
           this.setState({
             loading: false,
-            uploadMessage: "Failed to upload due to connectivity issues."
+            uploadNotice: "Failed to upload due to connectivity issues.",
+            message: ""
           });
         });
     }
@@ -60,6 +68,7 @@ class UploadPage extends React.Component<Props, State> {
             className="upload-page__file-input"
             onChange={this.onUploadFile}
             type="file"
+            multiple
           />
         </form>
         {this.state.loading ? (
@@ -67,9 +76,10 @@ class UploadPage extends React.Component<Props, State> {
         ) : (
           ""
         )}
-        <div className="upload-page__upload-info">
-          {this.state.uploadMessage}
+        <div className="upload-page__upload-notice">
+          {this.state.uploadNotice}
         </div>
+        <div className="upload-page__message">{this.state.message}</div>
       </div>
     );
   }

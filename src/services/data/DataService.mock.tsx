@@ -19,7 +19,7 @@ export class MockDataService extends MockSettings {
     if (this.outcomeSetting === Outcome.SUCCESS) {
       callSpy.mockResolvedValue(
         Promise.resolve({
-          status: 204
+          status: 200
         })
       );
     } else if (this.outcomeSetting === Outcome.REJECT) {
