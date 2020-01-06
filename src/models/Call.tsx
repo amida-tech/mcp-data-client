@@ -42,5 +42,9 @@ export class Header {
 export function handleResponse(response: any) {
   return response
     .json()
-    .then((data: any) => ({ status: response.status, message: data.message }));
+    .then((data: any) => ({
+      status: response.status,
+      message: data.message,
+      fileReport: data.files
+    }));
 }
