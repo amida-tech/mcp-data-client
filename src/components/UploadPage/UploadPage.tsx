@@ -1,5 +1,5 @@
 import React from "react";
-import { DataService } from "../../services/data/DataService";
+import { dataService } from "../../services/data/DataService";
 
 type Props = {};
 
@@ -31,10 +31,11 @@ class UploadPage extends React.Component<Props, State> {
     if (event.target.files && event.target.files[0]) {
       const filename = event.target.files[0].name;
       this.setState({ loading: true, uploadNotice: "", message: "" });
-      DataService.postMultipartRequest({
-        file: event.target.files[0],
-        filename
-      })
+      dataService
+        .postMultipartRequest({
+          file: event.target.files[0],
+          filename
+        })
         .then(response => {
           if (response.status !== 200) {
             // A response of *any* kind is technically success.
@@ -81,7 +82,7 @@ class UploadPage extends React.Component<Props, State> {
           />
         </form>
         {this.state.loading ? (
-          <div className="upload-page__indicator">Uploading...</div>
+          <div className="upload-page__load-indicator">Uploading...</div>
         ) : (
           ""
         )}
@@ -89,13 +90,14 @@ class UploadPage extends React.Component<Props, State> {
           {this.state.uploadNotice}
         </div>
         <div className="upload-page__file-report">
-          <span className="upload-page__file-message">
-            {this.state.message}
-          </span>
+          <span className="upload-page__message">{this.state.message}</span>
           <div className="upload-page__file-breakdown">
             {Object.keys(this.state.fileReport).map(
               (reportKey: string, index: number) => (
-                <div key={`upload-page-file-report-${index}`}>
+                <div
+                  className="upload-page__error-panel"
+                  key={`upload-page__file-report-${index}`}
+                >
                   {this.state.fileReport[reportKey]}
                 </div>
               )

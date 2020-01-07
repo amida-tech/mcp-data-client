@@ -4,8 +4,14 @@ import Call from "../../models/Call";
 /**
  * Data Service, named in the assumption of a unique set of REST calls.
  */
-export class DataService {
-  static postMultipartRequest(data: any, fullURI?: string): Promise<any> {
+class DataService {
+  baseURI: string;
+
+  constructor(baseURI: string) {
+    this.baseURI = baseURI;
+  }
+
+  postMultipartRequest(data: any, fullURI?: string): Promise<any> {
     const formData = new FormData();
     if (fullURI === undefined) {
       fullURI =
@@ -21,3 +27,7 @@ export class DataService {
     });
   }
 }
+
+export const dataService = new DataService(
+  process.env.REACT_APP_MCP_DATA_MAPPING_UTIL || ""
+);

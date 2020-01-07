@@ -29,7 +29,7 @@
     width: 80%;
   }
 
-  @include element("indicator") {
+  @include element("load-indicator") {
     animation: blinkingText 1s infinite;
     margin-top: 0.5em;
     font-weight: bolder;
@@ -44,7 +44,7 @@
     margin: 0 25%;
   }
 
-  @include element("file-message") {
+  @include element("message") {
     font-size: 1.2em;
   }
 
