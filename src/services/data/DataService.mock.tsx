@@ -19,11 +19,18 @@ export class MockDataService extends MockSettings {
     if (this.outcomeSetting === Outcome.SUCCESS) {
       callSpy.mockResolvedValue(
         Promise.resolve({
-          status: 200
+          status: 200,
+          message: "Validation report",
+          fileReport: { report: "I am the validator." }
         })
       );
     } else if (this.outcomeSetting === Outcome.REJECT) {
-      this.defaultRejection(callSpy);
+      callSpy.mockResolvedValue(
+        Promise.resolve({
+          status: 500,
+          message: "Doh!"
+        })
+      );
     } else if (this.outcomeSetting === Outcome.FAILURE) {
       this.defaultFailure(callSpy);
     } else {

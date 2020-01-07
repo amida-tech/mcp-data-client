@@ -38,13 +38,12 @@ export class Header {
 /**
  * Handles the de-jsonifying of a response. May move to util later.
  * @param response
- */
-export function handleResponse(response: any) {
-  return response
-    .json()
-    .then((data: any) => ({
-      status: response.status,
-      message: data.message,
-      fileReport: data.files
-    }));
-}
+//  */
+// export function handleResponse(response: any) {
+//   return response
+//     .json()
+//     .then((data: any) => ({
+//       status: response.status,
+//       message: data.message
+//     }));
+// }

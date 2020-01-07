@@ -43,14 +43,14 @@ class UploadPage extends React.Component<Props, State> {
               uploadNotice:
                 "Failed to upload. Something is wrong with the endpoint.",
               message: response.message,
-              fileReport: response.fileReport
+              fileReport: {}
             });
             return;
           }
           this.setState({
             loading: false,
             uploadNotice: "Upload success.",
-            message: response.message + ":",
+            message: response.message,
             fileReport: response.fileReport
           });
         })
@@ -92,19 +92,15 @@ class UploadPage extends React.Component<Props, State> {
           <span className="upload-page__file-message">
             {this.state.message}
           </span>
-          {this.state.fileReport ? (
-            <div className="upload-page__file-breakdown">
-              {Object.keys(this.state.fileReport).map(
-                (reportKey: string, index: number) => (
-                  <div key={`upload-page-file-report-${index}`}>
-                    {this.state.fileReport[reportKey]}
-                  </div>
-                )
-              )}
-            </div>
-          ) : (
-            ""
-          )}
+          <div className="upload-page__file-breakdown">
+            {Object.keys(this.state.fileReport).map(
+              (reportKey: string, index: number) => (
+                <div key={`upload-page-file-report-${index}`}>
+                  {this.state.fileReport[reportKey]}
+                </div>
+              )
+            )}
+          </div>
         </div>
       </div>
     );
