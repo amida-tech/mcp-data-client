@@ -1,11 +1,17 @@
 import React from "react";
-import { DataService } from "../../services/data/DataService";
+import { dataService } from "../../services/data/DataService";
 
 type Props = {};
 
 interface State {
   loading: Boolean;
-  uploadMessage: string;
+  uploadNotice: string;
+  message: string;
+  fileReport: FileReport;
+}
+
+interface FileReport {
+  [key: string]: any;
 }
 
 class UploadPage extends React.Component<Props, State> {
@@ -13,7 +19,9 @@ class UploadPage extends React.Component<Props, State> {
     super(props);
     this.state = {
       loading: false,
-      uploadMessage: ""
+      uploadNotice: "",
+      message: "",
+      fileReport: {}
     };
     this.onUploadFile = this.onUploadFile.bind(this);
   }
@@ -22,27 +30,37 @@ class UploadPage extends React.Component<Props, State> {
     event.preventDefault();
     if (event.target.files && event.target.files[0]) {
       const filename = event.target.files[0].name;
-      this.setState({ loading: true });
-      DataService.postMultipartRequest({
-        file: event.target.files[0],
-        filename
-      })
+      this.setState({ loading: true, uploadNotice: "", message: "" });
+      dataService
+        .postMultipartRequest({
+          file: event.target.files[0],
+          filename
+        })
         .then(response => {
-          if (response.status !== 204) {
+          if (response.status !== 200) {
             // A response of *any* kind is technically success.
             this.setState({
               loading: false,
-              uploadMessage:
-                "Failed to upload. Something is wrong with the endpoint."
+              uploadNotice:
+                "Failed to upload. Something is wrong with the endpoint.",
+              message: response.message,
+              fileReport: {}
             });
             return;
           }
-          this.setState({ loading: false, uploadMessage: "Upload success." });
+          this.setState({
+            loading: false,
+            uploadNotice: "Upload success.",
+            message: response.message,
+            fileReport: response.fileReport
+          });
         })
         .catch(() => {
           this.setState({
             loading: false,
-            uploadMessage: "Failed to upload due to connectivity issues."
+            uploadNotice: "Failed to upload due to connectivity issues.",
+            message: "",
+            fileReport: {}
           });
         });
     }
@@ -60,14 +78,32 @@ class UploadPage extends React.Component<Props, State> {
             className="upload-page__file-input"
             onChange={this.onUploadFile}
             type="file"
+            multiple
           />
         </form>
         {this.state.loading ? (
-          <div className="upload-page__indicator">Uploading...</div>
+          <div className="upload-page__load-indicator">Uploading...</div>
         ) : (
           ""
         )}
-        {this.state.uploadMessage}
+        <div className="upload-page__upload-notice">
+          {this.state.uploadNotice}
+        </div>
+        <div className="upload-page__file-report">
+          <span className="upload-page__message">{this.state.message}</span>
+          <div className="upload-page__file-breakdown">
+            {Object.keys(this.state.fileReport).map(
+              (reportKey: string, index: number) => (
+                <div
+                  className="upload-page__error-panel"
+                  key={`upload-page__file-report-${index}`}
+                >
+                  {this.state.fileReport[reportKey]}
+                </div>
+              )
+            )}
+          </div>
+        </div>
       </div>
     );
   }

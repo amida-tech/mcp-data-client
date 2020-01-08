@@ -33,9 +33,6 @@ const Nav: React.FC = () => {
           overlayClassName={"nav__menu-overlay"}
           onStateChange={state => handleStateChange(state)}
         >
-          <Link to="/app/rating" onClick={() => setMenuOpen(false)}>
-            {"Go to Rating Page"}
-          </Link>
           <Link to="/app/upload" onClick={() => setMenuOpen(false)}>
             {"Go to Upload Page"}
           </Link>

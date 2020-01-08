@@ -1,6 +1,6 @@
 import { MockSettings } from "../../util/MockSettings";
 import { Outcome } from "../../util/Constants";
-import { DataService } from "./DataService";
+import { dataService } from "./DataService";
 
 /**
  * The mock module is used as part of testing other modules
@@ -15,15 +15,22 @@ export class MockDataService extends MockSettings {
   }
 
   postMultipartRequest(data: any, fullURI: string) {
-    const callSpy = jest.spyOn(DataService, "postMultipartRequest");
+    const callSpy = jest.spyOn(dataService, "postMultipartRequest");
     if (this.outcomeSetting === Outcome.SUCCESS) {
       callSpy.mockResolvedValue(
         Promise.resolve({
-          status: 204
+          status: 200,
+          message: "Validation report",
+          fileReport: { report: "I am the validator." }
         })
       );
     } else if (this.outcomeSetting === Outcome.REJECT) {
-      this.defaultRejection(callSpy);
+      callSpy.mockResolvedValue(
+        Promise.resolve({
+          status: 500,
+          message: "Doh!"
+        })
+      );
     } else if (this.outcomeSetting === Outcome.FAILURE) {
       this.defaultFailure(callSpy);
     } else {
