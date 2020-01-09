@@ -36,11 +36,18 @@ class UploadFileReport extends React.Component<Props, State> {
             ${this.state.isOpen ? "down" : "up"}`}
           />
         </div>
-        {this.state.isOpen
-          ? this.props.errorReports.map((errorReport: ErrorReport) => (
-              <UploadErrorReport errorReport={errorReport} />
-            ))
-          : ""}
+        <div className="upload-file-report__body">
+          {this.state.isOpen
+            ? this.props.errorReports.map(
+                (errorReport: ErrorReport, index: number) => (
+                  <UploadErrorReport
+                    key={`$error-report-${this.props.filename}-${index}`}
+                    errorReport={errorReport}
+                  />
+                )
+              )
+            : ""}
+        </div>
       </div>
     );
   }

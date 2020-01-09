@@ -24,19 +24,73 @@ class UploadPage extends React.Component<Props, State> {
           {
             columnName: "fred",
             index: 5,
-            excel: "No ur an incel",
+            excel: "Nouincel",
             json: "vorhees"
           },
           {
             columnName: "steve",
             index: 5,
-            excel: "No ur an incel",
+            excel: "Nouincel",
             json: "vorhees"
           },
           {
             columnName: "martin",
             index: 6,
-            excel: "No ur an incel",
+            excel: "Nouincel",
+            json: "vorhees"
+          },
+          {
+            columnName: "fred",
+            index: 5,
+            excel: "Nouincel",
+            json: "vorhees"
+          },
+          {
+            columnName: "steve",
+            index: 5,
+            excel: "Nouincel",
+            json: "vorhees"
+          },
+          {
+            columnName: "martin",
+            index: 6,
+            excel: "Nouincel",
+            json: "vorhees"
+          },
+          {
+            columnName: "fred",
+            index: 5,
+            excel: "Nouincel",
+            json: "vorhees"
+          },
+          {
+            columnName: "steve",
+            index: 5,
+            excel: "Nouincel",
+            json: "vorhees"
+          },
+          {
+            columnName: "martin",
+            index: 6,
+            excel: "Nouincel",
+            json: "vorhees"
+          },
+          {
+            columnName: "fred",
+            index: 5,
+            excel: "Nouincel",
+            json: "vorhees"
+          },
+          {
+            columnName: "steve",
+            index: 5,
+            excel: "Nouincel",
+            json: "vorhees"
+          },
+          {
+            columnName: "martin",
+            index: 6,
+            excel: "Nouincel",
             json: "vorhees"
           }
         ]

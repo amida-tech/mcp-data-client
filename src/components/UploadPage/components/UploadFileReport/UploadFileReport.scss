@@ -1,0 +1,17 @@
+@include block("upload-file-report") {
+  @include element("header") {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: $TERTIARY_BODY_TEXT_COLOR solid 2px;
+    margin: 0.5em 0;
+    padding: 0 0.5em;
+  }
+
+  @include element("body") {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

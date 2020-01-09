@@ -41,7 +41,7 @@
 
   @include element("file-report") {
     white-space: pre-wrap;
-    margin: 0 25%;
+    margin: 0 10%;
   }
 
   @include element("message") {

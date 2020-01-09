@@ -27,7 +27,7 @@ class UploadErrorReport extends React.Component<Props, State> {
   render() {
     return (
       <div className="upload-error-report">
-        <div className="upload-error-report__header">
+        <div className="upload-error-report__header" onClick={this.onToggle}>
           Error
           <i
             className={`upload-error-report__arrow 
@@ -35,22 +35,26 @@ class UploadErrorReport extends React.Component<Props, State> {
           />
         </div>
         {this.state.isOpen ? (
-          <div className="upload-error-report__display">
-            <div className="upload-error-report__field">
-              <span className="upload-error_report__field-key">Column:</span>
-              {this.props.errorReport.columnName}
+          <div className="upload-error-report__body">
+            <div className="upload-error-report__label-column">
+              <div className="upload-error-report__label-field">Column:</div>
+              <div className="upload-error-report__label-field">Index:</div>
+              <div className="upload-error-report__label-field">Excel:</div>
+              <div className="upload-error-report__label-field">JSON:</div>
             </div>
-            <div className="upload-error-report__field">
-              <span className="upload-error_report__field-key">Index:</span>
-              {this.props.errorReport.index}
-            </div>
-            <div className="upload-error-report__field">
-              <span className="upload-error_report__field-key">Excel:</span>
-              {this.props.errorReport.excel}
-            </div>
-            <div className="upload-error-report__field">
-              <span className="upload-error_report__field-key">JSON:</span>
-              {this.props.errorReport.json}
+            <div className="upload-error-report__data-column">
+              <div className="upload-error-report__data-field">
+                {this.props.errorReport.columnName}
+              </div>
+              <div className="upload-error-report__data-field">
+                {this.props.errorReport.index}
+              </div>
+              <div className="upload-error-report__data-field">
+                {this.props.errorReport.excel}
+              </div>
+              <div className="upload-error-report__data-field">
+                {this.props.errorReport.json}
+              </div>
             </div>
           </div>
         ) : (

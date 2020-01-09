@@ -1,0 +1,35 @@
+@include block("upload-error-report") {
+  border: $PRIMARY_LABEL_TEXT_COLOR--WARNING solid 1px;
+  border-radius: 4px;
+  margin: 0.5em;
+  width: 10.5em;
+
+  @include element("header") {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $PRIMARY_LABEL_TEXT_COLOR--WARNING;
+    color: $PRIMARY_LABEL_TEXT_COLOR--DARK;
+    padding: 0 0.5em;
+  }
+
+  @include element("body") {
+    display: flex;
+    justify-content: center;
+    padding: 0.5em;
+    background: $TERTIARY_CONTENT_BACKGROUND_COLOR;
+  }
+
+  @include element("label-column") {
+    margin-right: 0.2em;
+  }
+
+  @include element("label-field") {
+    font-weight: bold;
+    text-align: right;
+  }
+
+  @include element("data-field") {
+    text-align: left;
+  }
+}
