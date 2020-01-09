@@ -1,5 +1,7 @@
 import React from "react";
 import { dataService } from "../../services/data/DataService";
+import { UploadFileReport } from "./components/";
+import { FileReport } from "../../models/FileReport";
 
 type Props = {};
 
@@ -7,11 +9,7 @@ interface State {
   loading: Boolean;
   uploadNotice: string;
   message: string;
-  fileReport: FileReport;
-}
-
-interface FileReport {
-  [key: string]: any;
+  fileReports: FileReport;
 }
 
 class UploadPage extends React.Component<Props, State> {
@@ -21,7 +19,28 @@ class UploadPage extends React.Component<Props, State> {
       loading: false,
       uploadNotice: "",
       message: "",
-      fileReport: {}
+      fileReports: {
+        fileNAME: [
+          {
+            columnName: "fred",
+            index: 5,
+            excel: "No ur an incel",
+            json: "vorhees"
+          },
+          {
+            columnName: "steve",
+            index: 5,
+            excel: "No ur an incel",
+            json: "vorhees"
+          },
+          {
+            columnName: "martin",
+            index: 6,
+            excel: "No ur an incel",
+            json: "vorhees"
+          }
+        ]
+      }
     };
     this.onUploadFile = this.onUploadFile.bind(this);
   }
@@ -44,7 +63,7 @@ class UploadPage extends React.Component<Props, State> {
               uploadNotice:
                 "Failed to upload. Something is wrong with the endpoint.",
               message: response.message,
-              fileReport: {}
+              fileReports: {}
             });
             return;
           }
@@ -52,7 +71,7 @@ class UploadPage extends React.Component<Props, State> {
             loading: false,
             uploadNotice: "Upload success.",
             message: response.message,
-            fileReport: response.fileReport
+            fileReports: response.fileReport
           });
         })
         .catch(() => {
@@ -60,7 +79,7 @@ class UploadPage extends React.Component<Props, State> {
             loading: false,
             uploadNotice: "Failed to upload due to connectivity issues.",
             message: "",
-            fileReport: {}
+            fileReports: {}
           });
         });
     }
@@ -92,13 +111,16 @@ class UploadPage extends React.Component<Props, State> {
         <div className="upload-page__file-report">
           <span className="upload-page__message">{this.state.message}</span>
           <div className="upload-page__file-breakdown">
-            {Object.keys(this.state.fileReport).map(
+            {Object.keys(this.state.fileReports).map(
               (reportKey: string, index: number) => (
                 <div
                   className="upload-page__error-panel"
                   key={`upload-page__file-report-${index}`}
                 >
-                  {this.state.fileReport[reportKey]}
+                  <UploadFileReport
+                    filename={reportKey}
+                    errorReports={this.state.fileReports[reportKey]}
+                  />
                 </div>
               )
             )}
