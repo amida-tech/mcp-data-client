@@ -26,6 +26,7 @@ class UploadFileReport extends React.Component<Props, State> {
     });
   };
 
+  // This is basic way.
   render() {
     return (
       <div className="upload-file-report">
