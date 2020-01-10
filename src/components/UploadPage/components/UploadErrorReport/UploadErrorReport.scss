@@ -11,6 +11,10 @@
     border: $PRIMARY_LABEL_TEXT_COLOR--WARNING solid 1px;
     border-radius: 4px 4px 0 0;
     padding: 0 0.5em;
+
+    @include modifier("closed") {
+      border-radius: 4px;
+    }
   }
 
   @include element("body") {
