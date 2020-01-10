@@ -7,52 +7,35 @@ interface Props {
   errorReports: Array<ErrorReport>;
 }
 
-interface State {
-  isOpen: boolean;
-}
+const UploadFileReport: React.FC<Props> = ({ filename, errorReports }) => {
+  const [isOpen, setOpen] = React.useState(true);
 
-class UploadFileReport extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      isOpen: true
-    };
-    this.onToggle = this.onToggle.bind(this);
-  }
-
-  onToggle = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
+  const onToggle = () => {
+    setOpen(!isOpen);
   };
 
-  // This is basic way.
-  render() {
-    return (
-      <div className="upload-file-report">
-        <div className="upload-file-report__header" onClick={this.onToggle}>
-          {this.props.filename}
-          <i
-            className={`upload-file-report__arrow whiteback ${
-              this.state.isOpen ? "down" : "up"
-            }`}
-          />
-        </div>
-        <div className="upload-file-report__body">
-          {this.state.isOpen
-            ? this.props.errorReports.map(
-                (errorReport: ErrorReport, index: number) => (
-                  <UploadErrorReport
-                    key={`$error-report-${this.props.filename}-${index}`}
-                    errorReport={errorReport}
-                  />
-                )
-              )
-            : ""}
-        </div>
+  return (
+    <div className="upload-file-report">
+      <div className="upload-file-report__header" onClick={onToggle}>
+        {filename}
+        <i
+          className={`upload-file-report__arrow whiteback ${
+            isOpen ? "down" : "up"
+          }`}
+        />
       </div>
-    );
-  }
-}
+      <div className="upload-file-report__body">
+        {isOpen
+          ? errorReports.map((errorReport: ErrorReport, index: number) => (
+              <UploadErrorReport
+                key={`$error-report-${filename}-${index}`}
+                errorReport={errorReport}
+              />
+            ))
+          : ""}
+      </div>
+    </div>
+  );
+};
 
 export default UploadFileReport;

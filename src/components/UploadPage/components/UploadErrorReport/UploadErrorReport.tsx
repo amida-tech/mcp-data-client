@@ -5,70 +5,52 @@ interface Props {
   errorReport: ErrorReport;
 }
 
-interface State {
-  isOpen: boolean;
-}
+const UploadErrorReport: React.FC<Props> = ({ errorReport }) => {
+  const [isOpen, setOpen] = React.useState(true);
 
-class UploadErrorReport extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      isOpen: true
-    };
-    this.onToggle = this.onToggle.bind(this);
-  }
-
-  onToggle = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
+  const onToggle = () => {
+    setOpen(!isOpen);
   };
 
-  render() {
-    return (
-      <div className="upload-error-report">
-        <div
-          className={`upload-error-report__header ${
-            this.state.isOpen ? "" : "upload-error-report__header--closed"
-          }`}
-          onClick={this.onToggle}
-        >
-          Error
-          <i
-            className={`upload-error-report__arrow ${
-              this.state.isOpen ? "down" : "up"
-            }`}
-          />
-        </div>
-        {this.state.isOpen ? (
-          <div className="upload-error-report__body">
-            <div className="upload-error-report__label-column">
-              <div className="upload-error-report__label-field">Column:</div>
-              <div className="upload-error-report__label-field">Index:</div>
-              <div className="upload-error-report__label-field">Excel:</div>
-              <div className="upload-error-report__label-field">JSON:</div>
+  return (
+    <div className="upload-error-report">
+      <div
+        className={`upload-error-report__header ${
+          isOpen ? "" : "upload-error-report__header--closed"
+        }`}
+        onClick={onToggle}
+      >
+        Error
+        <i className={`upload-error-report__arrow ${isOpen ? "down" : "up"}`} />
+      </div>
+      {isOpen ? (
+        <div className="upload-error-report__body">
+          <div className="upload-error-report__label-column">
+            <div className="upload-error-report__label-field">Column:</div>
+            <div className="upload-error-report__label-field">Index:</div>
+            <div className="upload-error-report__label-field">Excel:</div>
+            <div className="upload-error-report__label-field">JSON:</div>
+          </div>
+          <div className="upload-error-report__data-column">
+            <div className="upload-error-report__data-field">
+              {errorReport.columnName}
             </div>
-            <div className="upload-error-report__data-column">
-              <div className="upload-error-report__data-field">
-                {this.props.errorReport.columnName}
-              </div>
-              <div className="upload-error-report__data-field">
-                {this.props.errorReport.index}
-              </div>
-              <div className="upload-error-report__data-field">
-                {this.props.errorReport.excel}
-              </div>
-              <div className="upload-error-report__data-field">
-                {this.props.errorReport.json}
-              </div>
+            <div className="upload-error-report__data-field">
+              {errorReport.index}
+            </div>
+            <div className="upload-error-report__data-field">
+              {errorReport.excel}
+            </div>
+            <div className="upload-error-report__data-field">
+              {errorReport.json}
             </div>
           </div>
-        ) : (
-          ""
-        )}
-      </div>
-    );
-  }
-}
+        </div>
+      ) : (
+        ""
+      )}
+    </div>
+  );
+};
 
 export default UploadErrorReport;
