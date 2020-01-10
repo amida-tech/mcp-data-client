@@ -27,11 +27,17 @@ class UploadErrorReport extends React.Component<Props, State> {
   render() {
     return (
       <div className="upload-error-report">
-        <div className="upload-error-report__header" onClick={this.onToggle}>
+        <div
+          className={`upload-error-report__header ${
+            this.state.isOpen ? "" : "upload-error-report__header--closed"
+          }`}
+          onClick={this.onToggle}
+        >
           Error
           <i
-            className={`upload-error-report__arrow 
-          ${this.state.isOpen ? "down" : "up"}`}
+            className={`upload-error-report__arrow ${
+              this.state.isOpen ? "down" : "up"
+            }`}
           />
         </div>
         {this.state.isOpen ? (

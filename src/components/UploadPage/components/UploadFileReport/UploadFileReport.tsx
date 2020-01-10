@@ -32,8 +32,9 @@ class UploadFileReport extends React.Component<Props, State> {
         <div className="upload-file-report__header" onClick={this.onToggle}>
           {this.props.filename}
           <i
-            className={`upload-file-report__arrow whiteback
-            ${this.state.isOpen ? "down" : "up"}`}
+            className={`upload-file-report__arrow whiteback ${
+              this.state.isOpen ? "down" : "up"
+            }`}
           />
         </div>
         <div className="upload-file-report__body">

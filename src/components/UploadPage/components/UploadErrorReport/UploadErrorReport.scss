@@ -1,8 +1,6 @@
 @include block("upload-error-report") {
-  border: $PRIMARY_LABEL_TEXT_COLOR--WARNING solid 1px;
-  border-radius: 4px;
-  margin: 0.5em;
-  width: 10.5em;
+  padding: 0.2em;
+  width: 10em;
 
   @include element("header") {
     display: flex;
@@ -10,12 +8,20 @@
     align-items: center;
     background-color: $PRIMARY_LABEL_TEXT_COLOR--WARNING;
     color: $PRIMARY_LABEL_TEXT_COLOR--DARK;
+    border: $PRIMARY_LABEL_TEXT_COLOR--WARNING solid 1px;
+    border-radius: 4px 4px 0 0;
     padding: 0 0.5em;
+
+    @include modifier("closed") {
+      border-radius: 4px;
+    }
   }
 
   @include element("body") {
     display: flex;
     justify-content: center;
+    border: $PRIMARY_LABEL_TEXT_COLOR--WARNING solid 1px;
+    border-radius: 0 0 4px 4px;
     padding: 0.5em;
     background: $TERTIARY_CONTENT_BACKGROUND_COLOR;
   }
