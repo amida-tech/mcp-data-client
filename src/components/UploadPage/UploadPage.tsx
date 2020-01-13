@@ -132,7 +132,6 @@ const UploadPage: React.FC = () => {
                   filename={reportKey}
                   errorReports={uploadPageState.fileReports[reportKey]}
                 />
-                }
               </div>
             )
           )}

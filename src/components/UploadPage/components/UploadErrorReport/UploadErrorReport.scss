@@ -1,6 +1,6 @@
 @include block("upload-error-report") {
   padding: 0.2em;
-  width: 10em;
+  width: 15em;
 
   @include element("header") {
     display: flex;
@@ -19,6 +19,7 @@
 
   @include element("body") {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     border: $PRIMARY_LABEL_TEXT_COLOR--WARNING solid 1px;
     border-radius: 0 0 4px 4px;
@@ -30,13 +31,21 @@
     margin-right: 0.2em;
   }
 
-  @include element("label-field") {
-    font-weight: bold;
-    text-align: right;
-    text-transform: capitalize;
+  @include element("error-row") {
+    display: flex;
+    flex-direction: row;
   }
 
-  @include element("data-field") {
+  @include element("error-label") {
+    font-weight: bold;
     text-align: left;
+    text-transform: capitalize;
+    width: 35%;
+  }
+
+  @include element("error-data") {
+    text-align: left;
+    width: 65%;
+    word-break: break-word;
   }
 }
