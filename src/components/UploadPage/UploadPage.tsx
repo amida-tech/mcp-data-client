@@ -19,54 +19,33 @@ const UploadPage: React.FC = () => {
       fileReports: {
         fileNAME: [
           {
-            columnName: "fred",
+            column_name: "fred",
             index: 5,
             excel: "Nouincel",
             json: "vorhees"
           },
           {
-            columnName: "steve",
-            index: 5,
-            excel: "Nouincel",
-            json: "vorhees"
-          },
-          {
-            columnName: "martin",
-            index: 6,
-            excel: "Nouincel",
-            json: "vorhees"
-          },
-          {
-            columnName: "fred",
-            index: 5,
-            excel: "Nouincel",
-            json: "vorhees"
-          },
-          {
-            columnName: "steve",
-            index: 5,
-            excel: "Nouincel",
-            json: "vorhees"
-          },
-          {
-            columnName: "martin",
-            index: 6,
-            excel: "Nouincel",
-            json: "vorhees"
+            character_index: 1,
+            message: "'(' is not followed by a DBQ ID or '('",
+            object_id: "whoppbopadoobobawhopbamboo.xlsx"
           }
         ],
         whatEVER: [
           {
-            columnName: "bart",
-            index: 5,
-            excel: "Nouincel",
-            json: "vorhees"
+            formatted_dbq_id: "DBQstuffbart",
+            message: "He's not well at all. :(",
+            object_id: "inmydefenseiamnotwrong.json"
           },
           {
-            columnName: "lisa",
+            column_name: "lisa",
             index: 5,
             excel: "Nouincel",
             json: "vorhees"
+          }
+        ],
+        derp: [
+          {
+            message: "Things went bad."
           }
         ]
       }
@@ -153,6 +132,7 @@ const UploadPage: React.FC = () => {
                   filename={reportKey}
                   errorReports={uploadPageState.fileReports[reportKey]}
                 />
+                }
               </div>
             )
           )}

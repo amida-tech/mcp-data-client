@@ -33,6 +33,7 @@
   @include element("label-field") {
     font-weight: bold;
     text-align: right;
+    text-transform: capitalize;
   }
 
   @include element("data-field") {

@@ -1,5 +1,5 @@
 import React from "react";
-import { ErrorReport } from "../../../../models/FileReport";
+import { ErrorReport, GetErrorReportKeys } from "../../../../models/FileReport";
 
 interface Props {
   errorReport: ErrorReport;
@@ -25,26 +25,14 @@ const UploadErrorReport: React.FC<Props> = ({ errorReport }) => {
       </div>
       {isOpen ? (
         <div className="upload-error-report__body">
-          <div className="upload-error-report__label-column">
-            <div className="upload-error-report__label-field">Column:</div>
-            <div className="upload-error-report__label-field">Index:</div>
-            <div className="upload-error-report__label-field">Excel:</div>
-            <div className="upload-error-report__label-field">JSON:</div>
-          </div>
-          <div className="upload-error-report__data-column">
-            <div className="upload-error-report__data-field">
-              {errorReport.columnName}
+          {GetErrorReportKeys(errorReport).map(errorKey => (
+            <div>
+              <span className="upload-error-report__label-field">
+                {errorKey.replace(/_/g, " ")}:
+              </span>
+              {errorReport[errorKey]}
             </div>
-            <div className="upload-error-report__data-field">
-              {errorReport.index}
-            </div>
-            <div className="upload-error-report__data-field">
-              {errorReport.excel}
-            </div>
-            <div className="upload-error-report__data-field">
-              {errorReport.json}
-            </div>
-          </div>
+          ))}
         </div>
       ) : (
         ""
