@@ -19,12 +19,15 @@ const UploadPage: React.FC = () => {
       fileReports: {
         fileNAME: [
           {
+            error_type: "incorrect_value_in_row",
+            message: "values suck",
             column_name: "fred",
-            index: 5,
             excel: "Nouincel",
+            index: 5,
             json: "vorhees"
           },
           {
+            error_type: "paren_error",
             character_index: 1,
             message: "'(' is not followed by a DBQ ID or '('",
             object_id: "whoppbopadoobobawhopbamboo.xlsx"
@@ -32,20 +35,33 @@ const UploadPage: React.FC = () => {
         ],
         whatEVER: [
           {
-            formatted_dbq_id: "DBQstuffbart",
+            error_type: "incorrectly_formatted_dbq_id",
+            formatted_dbq_id: "worz",
+            message: "a witcher this way comes",
+            object_id: "wordz"
+          },
+          {
+            error_type: "no_dbq_logical_combo",
             message: "He's not well at all. :(",
             object_id: "inmydefenseiamnotwrong.json"
           },
           {
-            column_name: "lisa",
+            error_type: "dbq_logical_combo_error",
+            message: "lisa",
             index: 5,
-            excel: "Nouincel",
-            json: "vorhees"
+            object_id: "fourty 2"
           }
         ],
         derp: [
           {
+            error_type: "wrong_doc_type",
             message: "Things went bad."
+          },
+          {
+            error_type: "unmatched_parens",
+            object_id: "herp",
+            list_of_positions: [5, 10, 24],
+            message: "oh noes"
           }
         ]
       }

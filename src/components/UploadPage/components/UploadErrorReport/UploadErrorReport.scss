@@ -1,6 +1,6 @@
 @include block("upload-error-report") {
   padding: 0.2em;
-  width: 15em;
+  width: 18em;
 
   @include element("header") {
     display: flex;
@@ -20,20 +20,17 @@
   @include element("body") {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    min-height: 7em;
     border: $PRIMARY_LABEL_TEXT_COLOR--WARNING solid 1px;
     border-radius: 0 0 4px 4px;
     padding: 0.5em;
     background: $TERTIARY_CONTENT_BACKGROUND_COLOR;
   }
 
-  @include element("label-column") {
-    margin-right: 0.2em;
-  }
-
   @include element("error-row") {
     display: flex;
     flex-direction: row;
+    margin-bottom: 0.1em;
   }
 
   @include element("error-label") {
@@ -45,7 +42,7 @@
 
   @include element("error-data") {
     text-align: left;
-    width: 65%;
+    width: 60%;
     word-break: break-word;
   }
 }

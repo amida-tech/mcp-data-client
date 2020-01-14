@@ -30,6 +30,8 @@ const UploadFileReport: React.FC<Props> = ({ filename, errorReports }) => {
               <UploadErrorReport
                 key={`$error-report-${filename}-${index}`}
                 errorReport={errorReport}
+                filename={filename}
+                reportIndex={index}
               />
             ))
           : ""}

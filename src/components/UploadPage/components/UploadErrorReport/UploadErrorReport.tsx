@@ -1,11 +1,18 @@
 import React from "react";
-import { ErrorReport } from "../../../../models/FileReport";
+import { ErrorReport, GetErrorReportKeys } from "../../../../models/FileReport";
+import { ErrorLabels } from "../../../../util/Constants";
 
 interface Props {
   errorReport: ErrorReport;
+  filename: string;
+  reportIndex: number;
 }
 
-const UploadErrorReport: React.FC<Props> = ({ errorReport }) => {
+const UploadErrorReport: React.FC<Props> = ({
+  errorReport,
+  filename,
+  reportIndex
+}) => {
   const [isOpen, setOpen] = React.useState(true);
 
   const onToggle = () => {
@@ -25,16 +32,21 @@ const UploadErrorReport: React.FC<Props> = ({ errorReport }) => {
       </div>
       {isOpen ? (
         <div className="upload-error-report__body">
-          {Object.keys(errorReport).map(errorKey => (
-            <div className="upload-error-report__error-row">
-              <div className="upload-error-report__error-label">
-                {errorKey.replace(/_/g, " ")}:
+          {GetErrorReportKeys(errorReport)
+            .filter((errorKey: string) => errorKey !== "error_type")
+            .map((errorKey, errorIndex: number) => (
+              <div
+                key={`upload-error-report-key-${filename}-${reportIndex}-${errorIndex}`}
+                className="upload-error-report__error-row"
+              >
+                <div className="upload-error-report__error-label">
+                  {ErrorLabels[errorKey]}:
+                </div>
+                <div className="upload-error-report__error-data">
+                  {errorReport[errorKey].toString()}
+                </div>
               </div>
-              <div className="upload-error-report__error-data">
-                {errorReport[errorKey]}
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
       ) : (
         ""
