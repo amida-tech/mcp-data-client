@@ -7,8 +7,8 @@ export type FileReport = {
 
 export interface IncorrectValueInRow {
   error_type: "incorrect_value_in_row";
-  message: string;
   column_name: string;
+  message: string;
   excel: string;
   index: number;
   json: string;

@@ -20,7 +20,7 @@
   @include element("body") {
     display: flex;
     flex-direction: column;
-    min-height: 7em;
+    min-height: 7.3em;
     border: $PRIMARY_LABEL_TEXT_COLOR--WARNING solid 1px;
     border-radius: 0 0 4px 4px;
     padding: 0.5em;
