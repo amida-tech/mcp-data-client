@@ -33,6 +33,7 @@ const UploadPage: React.FC = () => {
             object_id: "whoppbopadoobobawhopbamboo.xlsx"
           }
         ],
+        super: null,
         whatEVER: [
           {
             error_type: "incorrectly_formatted_dbq_id",
@@ -63,7 +64,8 @@ const UploadPage: React.FC = () => {
             list_of_positions: [5, 10, 24],
             message: "oh noes"
           }
-        ]
+        ],
+        goodjob: null
       }
     }
   );

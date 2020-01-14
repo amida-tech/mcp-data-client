@@ -15,7 +15,7 @@ class DataService {
     const formData = new FormData();
     if (fullURI === undefined) {
       fullURI =
-        process.env.REACT_APP_MCP_DATA_MAPPING_UTIL + "api/excel/jsontoexcel";
+        process.env.REACT_APP_MCP_DATA_MAPPING_UTIL + "api/excel/validate";
     }
     formData.append("files", data.file);
     return fetch(fullURI, Call.postForm(formData)).then(response => {

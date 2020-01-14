@@ -1,6 +1,6 @@
 @include block("upload-error-report") {
   padding: 0.2em;
-  width: 18em;
+  width: 18.5em;
 
   @include element("header") {
     display: flex;
@@ -20,7 +20,7 @@
   @include element("body") {
     display: flex;
     flex-direction: column;
-    min-height: 7.3em;
+    min-height: 8.5em;
     border: $PRIMARY_LABEL_TEXT_COLOR--WARNING solid 1px;
     border-radius: 0 0 4px 4px;
     padding: 0.5em;

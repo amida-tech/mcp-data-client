@@ -4,7 +4,7 @@ import { UploadErrorReport } from "../index";
 
 interface Props {
   filename: string;
-  errorReports: Array<ErrorReport>;
+  errorReports: Array<ErrorReport> | null;
 }
 
 const UploadFileReport: React.FC<Props> = ({ filename, errorReports }) => {
@@ -12,6 +12,22 @@ const UploadFileReport: React.FC<Props> = ({ filename, errorReports }) => {
 
   const onToggle = () => {
     setOpen(!isOpen);
+  };
+
+  const generateReport = (errorReports: Array<ErrorReport> | null) => {
+    if (errorReports === null) {
+      return (
+        <div className="upload-file-report__success">No errors detected.</div>
+      );
+    }
+    return errorReports.map((errorReport: ErrorReport, index: number) => (
+      <UploadErrorReport
+        key={`$error-report-${filename}-${index}`}
+        errorReport={errorReport}
+        filename={filename}
+        fileReportIndex={index}
+      />
+    ));
   };
 
   return (
@@ -25,14 +41,7 @@ const UploadFileReport: React.FC<Props> = ({ filename, errorReports }) => {
         />
       </div>
       <div className="upload-file-report__body">
-        {isOpen
-          ? errorReports.map((errorReport: ErrorReport, index: number) => (
-              <UploadErrorReport
-                key={`$error-report-${filename}-${index}`}
-                errorReport={errorReport}
-              />
-            ))
-          : ""}
+        {isOpen ? generateReport(errorReports) : ""}
       </div>
     </div>
   );

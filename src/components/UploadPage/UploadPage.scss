@@ -1,5 +1,6 @@
 @include block("upload-page") {
   text-align: center;
+  margin-bottom: 4em;
 
   @include element("header") {
     height: calc(15vh - #{$nav-height});

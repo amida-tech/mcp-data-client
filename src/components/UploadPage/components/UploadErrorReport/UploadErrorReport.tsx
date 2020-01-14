@@ -5,9 +5,15 @@ import UploadErrorRow from "./UploadErrorRow";
 
 interface Props {
   errorReport: ErrorReport;
+  filename: string;
+  fileReportIndex: number;
 }
 
-const UploadErrorReport: React.FC<Props> = ({ errorReport }) => {
+const UploadErrorReport: React.FC<Props> = ({
+  errorReport,
+  filename,
+  fileReportIndex
+}) => {
   const [isOpen, setOpen] = React.useState(true);
 
   const onToggle = () => {
@@ -43,8 +49,9 @@ const UploadErrorReport: React.FC<Props> = ({ errorReport }) => {
       <div className="upload-error-report__body">
         {GetErrorReportKeys(errorReport)
           .filter((key: string) => key !== "error_type")
-          .map(reportKey => (
+          .map((reportKey, reportIndex) => (
             <UploadErrorRow
+              key={`upload-error-report-key-${filename}-${fileReportIndex}-${reportIndex}`}
               label={ErrorLabels[reportKey]}
               data={errorReport[reportKey]}
             />

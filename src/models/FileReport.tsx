@@ -2,7 +2,7 @@
  *
  */
 export type FileReport = {
-  [key: string]: Array<ErrorReport>;
+  [key: string]: Array<ErrorReport> | null;
 };
 
 export interface IncorrectValueInRow {

@@ -14,4 +14,12 @@
     display: flex;
     flex-wrap: wrap;
   }
+
+  @include element("success") {
+    background-color: getThematicValue(SYSTEM_GREEN, light);
+    width: 100%;
+    color: $PRIMARY_LABEL_TEXT_COLOR--DARK;
+    radius: 4px;
+    margin-bottom: 1em;
+  }
 }
