@@ -16,64 +16,13 @@ const UploadPage: React.FC = () => {
       loading: false,
       uploadNotice: "",
       message: "",
-      fileReports: {
-        fileNAME: [
-          {
-            error_type: "incorrect_value_in_row",
-            message: "values suck",
-            column_name: "fred",
-            excel: "Nouincel",
-            index: 5,
-            json: "vorhees"
-          },
-          {
-            error_type: "paren_error",
-            character_index: 1,
-            message: "'(' is not followed by a DBQ ID or '('",
-            object_id: "whoppbopadoobobawhopbamboo.xlsx"
-          }
-        ],
-        super: null,
-        whatEVER: [
-          {
-            error_type: "incorrectly_formatted_dbq_id",
-            formatted_dbq_id: "worz",
-            message: "a witcher this way comes",
-            object_id: "wordz"
-          },
-          {
-            error_type: "no_dbq_logical_combo",
-            message: "He's not well at all. :(",
-            object_id: "inmydefenseiamnotwrong.json"
-          },
-          {
-            error_type: "dbq_logical_combo_error",
-            message: "lisa",
-            index: 5,
-            object_id: "fourty 2"
-          }
-        ],
-        derp: [
-          {
-            error_type: "wrong_doc_type",
-            message: "Things went bad."
-          },
-          {
-            error_type: "unmatched_parens",
-            object_id: "herp",
-            list_of_positions: [5, 10, 24],
-            message: "oh noes"
-          }
-        ],
-        goodjob: null
-      }
+      fileReports: {}
     }
   );
 
   const onUploadFile = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     if (event.target.files && event.target.files[0]) {
-      const filename = event.target.files[0].name;
       setUploadPageState({
         loading: true,
         uploadNotice: "",
@@ -81,10 +30,7 @@ const UploadPage: React.FC = () => {
         fileReports: {}
       });
       dataService
-        .postMultipartRequest({
-          file: event.target.files[0],
-          filename
-        })
+        .postMultipartRequest(event.target.files)
         .then(response => {
           if (response.status !== 200) {
             // A response of *any* kind is technically success.

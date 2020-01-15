@@ -13,37 +13,37 @@ export type FileReport = {
 export interface IncorrectValueInRow {
   error_type: "incorrect_value_in_row";
   column_name: string;
-  message: string;
-  excel: string;
   index: number;
+  excel: string;
   json: string;
+  message: string;
 }
 
 export interface ParenError {
   error_type: "paren_error";
   character_index: number;
-  message: string;
   object_id: string;
+  message: string;
 }
 
 export interface IncorrectlyFormattedDbqId {
   error_type: "incorrectly_formatted_dbq_id";
   formatted_dbq_id: string;
-  message: string;
   object_id: string;
+  message: string;
 }
 
 export interface NoDbqLogicalCombo {
   error_type: "no_dbq_logical_combo";
-  message: string;
   object_id: string;
+  message: string;
 }
 
 export interface DbqLogicalComboError {
   error_type: "dbq_logical_combo_error";
-  message: string;
   index: number;
   object_id: string;
+  message: string;
 }
 
 export interface WrongDocType {
