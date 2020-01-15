@@ -72,16 +72,16 @@ export type ErrorReport =
  * a Constants file because of side-by-side use on the UI.
  */
 export enum ErrorFieldLabels {
+  error_type = "Type",
   character_index = "Char. Index",
   column_name = "Column",
   object_id = "Object Id",
   list_of_positions = "Positions",
-  message = "Message",
   index = "Index",
   json = "JSON",
   excel = "Excel",
   formatted_dbq_id = "DBQ Id",
-  error_type = "Type"
+  message = "Message"
 }
 export enum ErrorTypeLabels {
   incorrect_value_in_row = "Incorrect Value in Row",
@@ -94,6 +94,26 @@ export enum ErrorTypeLabels {
 }
 
 /**
+ * Consider this ear marked to move into a "basic" model.
+ */
+interface KeyedNumbersObject {
+  [key: string]: number;
+}
+
+const ErrorKeyOrderPreference: KeyedNumbersObject = {
+  error_type: 0,
+  index: 1,
+  character_index: 2,
+  column_name: 3,
+  object_id: 4,
+  formatted_dbq_id: 5,
+  json: 6,
+  excel: 7,
+  list_of_positions: 8,
+  message: 9
+};
+
+/**
  * Returns an array of keys. Required because of TypeScript cannot
  * type-check keys if you run Object.keys() against the object directly.
  * @param ErrorReportKeys
@@ -101,5 +121,7 @@ export enum ErrorTypeLabels {
 export function GetErrorReportKeys<ErrorReportCopy extends ErrorReport>(
   ErrorReportKeys: ErrorReportCopy
 ): Array<keyof ErrorReportCopy> {
-  return Object.keys(ErrorReportKeys) as Array<keyof ErrorReportCopy>;
+  return Object.keys(ErrorReportKeys).sort((keyA: string, keyB: string) => {
+    return ErrorKeyOrderPreference[keyA] - ErrorKeyOrderPreference[keyB];
+  }) as Array<keyof ErrorReportCopy>;
 }
