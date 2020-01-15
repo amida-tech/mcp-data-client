@@ -10,10 +10,51 @@
     color: $PRIMARY_LABEL_TEXT_COLOR--DARK;
     border: $PRIMARY_LABEL_TEXT_COLOR--WARNING solid 1px;
     border-radius: 4px 4px 0 0;
-    padding: 0 0.5em;
+    padding: 0.3em 0.5em;
 
     @include modifier("closed") {
       border-radius: 4px;
+    }
+
+    @include modifier("incorrect_value_in_row") {
+      background-color: $PRIMARY_LABEL_TEXT_COLOR--WARNING;
+      border-color: $PRIMARY_LABEL_TEXT_COLOR--WARNING;
+    }
+
+    @include modifier("paren_error") {
+      background-color: getThematicValue(SYSTEM_PINK, dark);
+      border-color: getThematicValue(SYSTEM_PINK, dark);
+    }
+
+    @include modifier("incorrectly_formatted_dbq_id") {
+      background-color: getThematicValue(SYSTEM_ORANGE, dark);
+      border-color: getThematicValue(SYSTEM_ORANGE, dark);
+    }
+
+    @include modifier("no_dbq_logical_combo") {
+      background-color: getThematicValue(
+        PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR,
+        dark
+      );
+      border-color: getThematicValue(
+        PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR,
+        dark
+      );
+    }
+
+    @include modifier("dbq_logical_combo_error") {
+      background-color: $TERTIARY_DISPLAY_TEXT_COLOR;
+      border-color: $TERTIARY_DISPLAY_TEXT_COLOR;
+    }
+
+    @include modifier("wrong_doc_type") {
+      background-color: getThematicValue(SYSTEM_PURPLE, light);
+      border-color: getThematicValue(SYSTEM_PURPLE, light);
+    }
+
+    @include modifier("unmatched_parens") {
+      background-color: getThematicValue(APPLICATION_BORDER_COLOR, dark);
+      border-color: getThematicValue(APPLICATION_BORDER_COLOR, dark);
     }
   }
 
@@ -25,6 +66,37 @@
     border-radius: 0 0 4px 4px;
     padding: 0.5em;
     background: $TERTIARY_CONTENT_BACKGROUND_COLOR;
+
+    @include modifier("incorrect_value_in_row") {
+      border-color: $PRIMARY_LABEL_TEXT_COLOR--WARNING;
+    }
+
+    @include modifier("paren_error") {
+      border-color: getThematicValue(SYSTEM_PINK, dark);
+    }
+
+    @include modifier("incorrectly_formatted_dbq_id") {
+      border-color: getThematicValue(SYSTEM_ORANGE, dark);
+    }
+
+    @include modifier("no_dbq_logical_combo") {
+      border-color: getThematicValue(
+        PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR,
+        dark
+      );
+    }
+
+    @include modifier("dbq_logical_combo_error") {
+      border-color: $TERTIARY_DISPLAY_TEXT_COLOR;
+    }
+
+    @include modifier("wrong_doc_type") {
+      border-color: getThematicValue(SYSTEM_PURPLE, light);
+    }
+
+    @include modifier("unmatched_parens") {
+      border-color: getThematicValue(APPLICATION_BORDER_COLOR, dark);
+    }
   }
 
   @include element("error-row") {

@@ -6,7 +6,7 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import client from "../../services/ApolloClient";
 import UploadPage from "./UploadPage";
 import { MockDataService } from "../../services/data/DataService.mock";
-import { Outcome } from "../../util/Constants";
+import { Outcome } from "../../util/MockSettings";
 
 configure({ adapter: new Adapter() });
 

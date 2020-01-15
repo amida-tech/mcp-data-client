@@ -1,5 +1,4 @@
-import { MockSettings } from "../../util/MockSettings";
-import { Outcome } from "../../util/Constants";
+import { MockSettings, Outcome } from "../../util/MockSettings";
 import { dataService } from "./DataService";
 
 /**

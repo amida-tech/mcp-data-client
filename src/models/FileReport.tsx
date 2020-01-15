@@ -1,10 +1,15 @@
 /**
- *
+ * File Reports contain nothing or arrays of Error Reports.
  */
 export type FileReport = {
   [key: string]: Array<ErrorReport> | null;
 };
 
+/**
+ * The seven kinds of Error Reports. Each only has
+ * error_type and message in common. The rest are
+ * unique to that type.
+ */
 export interface IncorrectValueInRow {
   error_type: "incorrect_value_in_row";
   column_name: string;
@@ -61,6 +66,32 @@ export type ErrorReport =
   | DbqLogicalComboError
   | WrongDocType
   | UnmatchedParens;
+
+/**
+ * Human-readable labels for the individual fields. Put here instead of
+ * a Constants file because of side-by-side use on the UI.
+ */
+export enum ErrorFieldLabels {
+  character_index = "Char. Index",
+  column_name = "Column",
+  object_id = "Object Id",
+  list_of_positions = "Positions",
+  message = "Message",
+  index = "Index",
+  json = "JSON",
+  excel = "Excel",
+  formatted_dbq_id = "DBQ Id",
+  error_type = "Type"
+}
+export enum ErrorTypeLabels {
+  incorrect_value_in_row = "Incorrect Value in Row",
+  paren_error = "Parentheses Error",
+  incorrectly_formatted_dbq_id = "Incorrectly Formatted DBQ Id",
+  no_dbq_logical_combo = "No DBQ Logical Combo",
+  dbq_logical_combo_error = "DBQ Logical Combo Error",
+  wrong_doc_type = "Wrong Document Type",
+  unmatched_parens = "Unmatched Parentheses"
+}
 
 /**
  * Returns an array of keys. Required because of TypeScript cannot

@@ -1,6 +1,10 @@
 import React from "react";
-import { ErrorReport, GetErrorReportKeys } from "../../../../models/FileReport";
-import { ErrorLabels } from "../../../../util/Constants";
+import {
+  ErrorReport,
+  GetErrorReportKeys,
+  ErrorFieldLabels,
+  ErrorTypeLabels
+} from "../../../../models/FileReport";
 import UploadErrorRow from "./UploadErrorRow";
 
 interface Props {
@@ -28,17 +32,20 @@ const UploadErrorReport: React.FC<Props> = ({
   const generateRow = (errorReport: ErrorReport) => {
     if (errorReport.error_type === "unmatched_parens") {
       return (
-        <div className="upload-error-report__body">
+        <div
+          className="upload-error-report__body 
+          upload-error-report__body--unmatched_parens"
+        >
           <UploadErrorRow
-            label={ErrorLabels.object_id}
+            label={ErrorFieldLabels.object_id}
             data={errorReport.object_id}
           />
           <UploadErrorRow
-            label={ErrorLabels.list_of_positions}
+            label={ErrorFieldLabels.list_of_positions}
             data={errorReport.list_of_positions.join(", ")}
           />
           <UploadErrorRow
-            label={ErrorLabels.message}
+            label={ErrorFieldLabels.message}
             data={errorReport.message}
           />
         </div>
@@ -46,13 +53,16 @@ const UploadErrorReport: React.FC<Props> = ({
     }
 
     return (
-      <div className="upload-error-report__body">
+      <div
+        className={`upload-error-report__body
+        upload-error-report__body--${errorReport.error_type}`}
+      >
         {GetErrorReportKeys(errorReport)
           .filter((key: string) => key !== "error_type")
           .map((reportKey, reportIndex) => (
             <UploadErrorRow
               key={`upload-error-report-key-${filename}-${fileReportIndex}-${reportIndex}`}
-              label={ErrorLabels[reportKey]}
+              label={ErrorFieldLabels[reportKey]}
               data={errorReport[reportKey]}
             />
           ))}
@@ -63,12 +73,12 @@ const UploadErrorReport: React.FC<Props> = ({
   return (
     <div className="upload-error-report">
       <div
-        className={`upload-error-report__header ${
-          isOpen ? "" : "upload-error-report__header--closed"
-        }`}
+        className={`upload-error-report__header 
+        upload-error-report__header--${errorReport.error_type}
+        ${isOpen ? "" : "upload-error-report__header--closed"}`}
         onClick={onToggle}
       >
-        Error
+        {ErrorTypeLabels[errorReport.error_type]}
         <i className={`upload-error-report__arrow ${isOpen ? "down" : "up"}`} />
       </div>
       {isOpen ? generateRow(errorReport) : ""}
