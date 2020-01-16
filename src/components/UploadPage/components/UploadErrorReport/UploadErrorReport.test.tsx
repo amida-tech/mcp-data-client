@@ -3,7 +3,7 @@ import { shallow, configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import UploadErrorRow from "./UploadErrorRow";
 import UploadErrorReport from "./UploadErrorReport";
-import ErrorReport from "../../../../models/FileReport";
+import { ErrorReport } from "../../../../models/FileReport";
 
 configure({ adapter: new Adapter() });
 
@@ -34,14 +34,6 @@ describe("Component: UploadErrorRow", () => {
       message: "Ch ch ch, ma ma ma..."
     };
 
-    const valueChecks = [
-      "Column Name:George",
-      "Index:9",
-      "JSON:Vorhees",
-      "Excel:georgeSS.xlsx",
-      "Message:Ch ch ch, ma ma ma..."
-    ];
-
     const wrapper = shallow(
       <UploadErrorReport
         errorReport={incorrectValueInRow}
@@ -56,9 +48,27 @@ describe("Component: UploadErrorRow", () => {
         .hasClass("upload-error-report__header--incorrect_value_in_row")
     ).toBeTruthy();
     expect(wrapper.find(UploadErrorRow).length).toBe(5);
-    // console.log(wrapper.find(UploadErrorRow).get(3));
-    // expect(wrapper.find(UploadErrorRow).get(3).props()).toEqual({ label: 'Excel', data: incorrectValueInRow.excel });
-    console.log(wrapper.find(UploadErrorRow).get(3).props.label); // data is the other
-    // That ^ gets back "Label"
+    expect(wrapper.find(UploadErrorRow).get(0).props).toEqual({
+      label: "Index",
+      data: incorrectValueInRow.index
+    });
+    expect(wrapper.find(UploadErrorRow).get(1).props).toEqual({
+      label: "Column",
+      data: incorrectValueInRow.column_name
+    });
+    expect(wrapper.find(UploadErrorRow).get(2).props).toEqual({
+      label: "JSON",
+      data: incorrectValueInRow.json
+    });
+    expect(wrapper.find(UploadErrorRow).get(3).props).toEqual({
+      label: "Excel",
+      data: incorrectValueInRow.excel
+    });
+    expect(wrapper.find(UploadErrorRow).get(4).props).toEqual({
+      label: "Message",
+      data: incorrectValueInRow.message
+    });
+
+    // Check key values too as they are programmatic..
   });
 });
