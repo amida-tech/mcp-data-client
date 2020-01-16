@@ -5,6 +5,9 @@ interface Props {
   data: any;
 }
 
+/**
+ * Tests are in UploadErrorReport.test.tsx
+ */
 const UploadErrorRow: React.FC<Props> = ({ label, data }) => {
   return (
     <div className="upload-error-report__error-row">
