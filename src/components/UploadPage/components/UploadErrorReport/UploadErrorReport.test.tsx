@@ -170,4 +170,147 @@ describe("Component: UploadErrorRow", () => {
       "upload-error-report-key-stuff.xlsx-1-2"
     );
   });
+
+  it("renders an no_dbq_logical_combo without crashing", () => {
+    const noDbqLogicalCombo: ErrorReport = MockUploadFileReport!
+      .exampleFileNameA![3] as NoDbqLogicalCombo;
+
+    const wrapper = shallow(
+      <UploadErrorReport
+        errorReport={noDbqLogicalCombo}
+        filename={"stuff.xlsx"}
+        fileReportIndex={1}
+      />
+    );
+
+    expect(
+      wrapper
+        .find(".upload-error-report__header")
+        .hasClass("upload-error-report__header--no_dbq_logical_combo")
+    ).toBeTruthy();
+    expect(wrapper.find(UploadErrorRow).length).toBe(2);
+    expect(wrapper.find(UploadErrorRow).get(0).props).toEqual({
+      label: "Object Id",
+      data: noDbqLogicalCombo.object_id
+    });
+    expect(wrapper.find(UploadErrorRow).get(0).key).toEqual(
+      "upload-error-report-key-stuff.xlsx-1-0"
+    );
+    expect(wrapper.find(UploadErrorRow).get(1).props).toEqual({
+      label: "Message",
+      data: noDbqLogicalCombo.message
+    });
+    expect(wrapper.find(UploadErrorRow).get(1).key).toEqual(
+      "upload-error-report-key-stuff.xlsx-1-1"
+    );
+  });
+
+  it("renders an dbq_logical_combo_error without crashing", () => {
+    const dbqLogicalComboError: ErrorReport = MockUploadFileReport!
+      .exampleFileNameB![0] as DbqLogicalComboError;
+
+    const wrapper = shallow(
+      <UploadErrorReport
+        errorReport={dbqLogicalComboError}
+        filename={"stuff.xlsx"}
+        fileReportIndex={1}
+      />
+    );
+
+    expect(
+      wrapper
+        .find(".upload-error-report__header")
+        .hasClass("upload-error-report__header--dbq_logical_combo_error")
+    ).toBeTruthy();
+    expect(wrapper.find(UploadErrorRow).length).toBe(3);
+    expect(wrapper.find(UploadErrorRow).get(0).props).toEqual({
+      label: "Index",
+      data: dbqLogicalComboError.index
+    });
+    expect(wrapper.find(UploadErrorRow).get(0).key).toEqual(
+      "upload-error-report-key-stuff.xlsx-1-0"
+    );
+    expect(wrapper.find(UploadErrorRow).get(1).props).toEqual({
+      label: "Object Id",
+      data: dbqLogicalComboError.object_id
+    });
+    expect(wrapper.find(UploadErrorRow).get(1).key).toEqual(
+      "upload-error-report-key-stuff.xlsx-1-1"
+    );
+    expect(wrapper.find(UploadErrorRow).get(2).props).toEqual({
+      label: "Message",
+      data: dbqLogicalComboError.message
+    });
+    expect(wrapper.find(UploadErrorRow).get(2).key).toEqual(
+      "upload-error-report-key-stuff.xlsx-1-2"
+    );
+  });
+
+  it("renders an wrong_doc_type without crashing", () => {
+    const wrongDocType: ErrorReport = MockUploadFileReport!
+      .exampleFileNameB![1] as WrongDocType;
+
+    const wrapper = shallow(
+      <UploadErrorReport
+        errorReport={wrongDocType}
+        filename={"stuff.xlsx"}
+        fileReportIndex={1}
+      />
+    );
+
+    expect(
+      wrapper
+        .find(".upload-error-report__header")
+        .hasClass("upload-error-report__header--wrong_doc_type")
+    ).toBeTruthy();
+    expect(wrapper.find(UploadErrorRow).length).toBe(1);
+    expect(wrapper.find(UploadErrorRow).get(0).props).toEqual({
+      label: "Message",
+      data: wrongDocType.message
+    });
+    expect(wrapper.find(UploadErrorRow).get(0).key).toEqual(
+      "upload-error-report-key-stuff.xlsx-1-0"
+    );
+  });
+
+  it("renders an unmatched_parens without crashing", () => {
+    const unmatchedParens: ErrorReport = MockUploadFileReport!
+      .exampleFileNameB![2] as UnmatchedParens;
+
+    const wrapper = shallow(
+      <UploadErrorReport
+        errorReport={unmatchedParens}
+        filename={"stuff.xlsx"}
+        fileReportIndex={1}
+      />
+    );
+
+    expect(
+      wrapper
+        .find(".upload-error-report__header")
+        .hasClass("upload-error-report__header--unmatched_parens")
+    ).toBeTruthy();
+    expect(wrapper.find(UploadErrorRow).length).toBe(3);
+    expect(wrapper.find(UploadErrorRow).get(0).props).toEqual({
+      label: "Object Id",
+      data: unmatchedParens.object_id
+    });
+    expect(wrapper.find(UploadErrorRow).get(0).key).toEqual(
+      "upload-error-report-key-stuff.xlsx-1-0"
+    );
+    expect(wrapper.find(UploadErrorRow).get(1).props).toEqual({
+      label: "Positions",
+      data: unmatchedParens.list_of_positions.join(", ")
+    });
+    expect(wrapper.find(UploadErrorRow).get(1).key).toEqual(
+      "upload-error-report-key-stuff.xlsx-1-1"
+    );
+    expect(wrapper.find(UploadErrorRow).get(2).props).toEqual({
+      label: "Message",
+      data: unmatchedParens.message
+    });
+    expect(wrapper.find(UploadErrorRow).get(2).key).toEqual(
+      "upload-error-report-key-stuff.xlsx-1-2"
+    );
+  });
 });

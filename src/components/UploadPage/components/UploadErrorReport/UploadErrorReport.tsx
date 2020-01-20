@@ -37,14 +37,17 @@ const UploadErrorReport: React.FC<Props> = ({
           upload-error-report__body--unmatched_parens"
         >
           <UploadErrorRow
+            key={`upload-error-report-key-${filename}-${fileReportIndex}-0`}
             label={ErrorFieldLabels.object_id}
             data={errorReport.object_id}
           />
           <UploadErrorRow
+            key={`upload-error-report-key-${filename}-${fileReportIndex}-1`}
             label={ErrorFieldLabels.list_of_positions}
             data={errorReport.list_of_positions.join(", ")}
           />
           <UploadErrorRow
+            key={`upload-error-report-key-${filename}-${fileReportIndex}-2`}
             label={ErrorFieldLabels.message}
             data={errorReport.message}
           />
