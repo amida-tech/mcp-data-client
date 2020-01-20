@@ -10,7 +10,7 @@ import { Outcome } from "../../util/MockSettings";
 
 configure({ adapter: new Adapter() });
 
-const testEvent = {
+const mockFileUpload = {
   target: {
     files: ["thetestfile.doc"]
   },
@@ -18,27 +18,19 @@ const testEvent = {
 };
 
 const defaultState = function(wrapper: ShallowWrapper) {
-  expect(wrapper.state("loading")).toBe(false);
   expect(wrapper.find(".upload-page__load-indicator").exists()).toBe(false);
-  expect(wrapper.state("uploadNotice")).toEqual("");
   expect(wrapper.find(".upload-page__upload-notice").text()).toEqual("");
-  expect(wrapper.state("message")).toEqual("");
   expect(wrapper.find(".upload-page__message").text()).toEqual("");
-  expect(wrapper.state("fileReport")).toMatchObject({});
   expect(wrapper.find(".upload-page__error-panel").exists()).toBe(false);
 };
 
 const loadingState = function(wrapper: ShallowWrapper) {
-  wrapper.find(".upload-page__file-input").simulate("change", testEvent);
-  expect(wrapper.state("loading")).toBe(true);
+  wrapper.find(".upload-page__file-input").simulate("change", mockFileUpload);
   expect(wrapper.find(".upload-page__load-indicator").text()).toEqual(
     "Uploading..."
   );
-  expect(wrapper.state("uploadNotice")).toEqual("");
   expect(wrapper.find(".upload-page__upload-notice").text()).toEqual("");
-  expect(wrapper.state("message")).toEqual("");
   expect(wrapper.find(".upload-page__message").text()).toEqual("");
-  expect(wrapper.state("fileReport")).toMatchObject({});
   expect(wrapper.find(".upload-page__error-panel").exists()).toBe(false);
 };
 
@@ -70,23 +62,16 @@ describe("Component: UploadPage", () => {
     loadingState(wrapper);
     expect(callSpy).toHaveBeenCalled();
     await mockDataService.setOutcomeAwait(false);
-    expect(wrapper.state("loading")).toBe(false);
     expect(wrapper.find(".upload-page__load-indicator").exists()).toBe(false);
-    expect(wrapper.state("uploadNotice")).toEqual("Upload success.");
     expect(wrapper.find(".upload-page__upload-notice").text()).toEqual(
       "Upload success."
     );
-    expect(wrapper.state("message")).toEqual("Validation report");
     expect(wrapper.find(".upload-page__message").text()).toEqual(
       "Validation report"
     );
-    expect(wrapper.state("fileReport")).toMatchObject({
-      report: "I am the validator."
-    });
     expect(wrapper.find(".upload-page__error-panel").exists()).toBe(true);
-    expect(wrapper.find(".upload-page__error-panel").text()).toEqual(
-      "I am the validator."
-    );
+    // expect(wrapper.find)
+    // Complicated new stuff.
   });
 
   it("is rejected in it attempts to upload a file", async () => {
@@ -101,17 +86,11 @@ describe("Component: UploadPage", () => {
     loadingState(wrapper);
     expect(callSpy).toHaveBeenCalled();
     await mockDataService.setOutcomeAwait(false);
-    expect(wrapper.state("loading")).toBe(false);
     expect(wrapper.find(".upload-page__load-indicator").exists()).toBe(false);
-    expect(wrapper.state("uploadNotice")).toEqual(
-      "Failed to upload. Something is wrong with the endpoint."
-    );
     expect(wrapper.find(".upload-page__upload-notice").text()).toEqual(
       "Failed to upload. Something is wrong with the endpoint."
     );
-    expect(wrapper.state("message")).toEqual("Doh!");
     expect(wrapper.find(".upload-page__message").text()).toEqual("Doh!");
-    expect(wrapper.state("fileReport")).toMatchObject({});
     expect(wrapper.find(".upload-page__error-panel").exists()).toBe(false);
   });
 
@@ -127,17 +106,11 @@ describe("Component: UploadPage", () => {
     loadingState(wrapper);
     expect(callSpy).toHaveBeenCalled();
     await mockDataService.setOutcomeAwait(false);
-    expect(wrapper.state("loading")).toBe(false);
     expect(wrapper.find(".upload-page__load-indicator").exists()).toBe(false);
-    expect(wrapper.state("uploadNotice")).toEqual(
-      "Failed to upload due to connectivity issues."
-    );
     expect(wrapper.find(".upload-page__upload-notice").text()).toEqual(
       "Failed to upload due to connectivity issues."
     );
-    expect(wrapper.state("message")).toEqual("");
     expect(wrapper.find(".upload-page__message").text()).toEqual("");
-    expect(wrapper.state("fileReport")).toMatchObject({});
     expect(wrapper.find(".upload-page__error-panel").exists()).toBe(false);
   });
 });

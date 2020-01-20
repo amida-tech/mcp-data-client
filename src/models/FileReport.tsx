@@ -125,3 +125,55 @@ export function GetErrorReportKeys<ErrorReportCopy extends ErrorReport>(
     return ErrorKeyOrderPreference[keyA] - ErrorKeyOrderPreference[keyB];
   }) as Array<keyof ErrorReportCopy>;
 }
+
+/**
+ * This is a mock example for use in tests.
+ */
+export const MockUploadFileReport: FileReport = {
+  exampleFileNameA: [
+    {
+      error_type: "incorrect_value_in_row",
+      column_name: "Column B",
+      index: 10,
+      excel: "IncorrectValueInRow.xlsx",
+      json: "IncorrectValueInRow.json",
+      message: "There's a snake in my boot."
+    },
+    {
+      error_type: "paren_error",
+      character_index: 5,
+      object_id: "ParenErrorObjectId",
+      message: "To infinity, and beyond!"
+    },
+    {
+      error_type: "incorrectly_formatted_dbq_id",
+      formatted_dbq_id: "Formatted DBQ",
+      object_id: "IncorrectlyFormattedDBQId",
+      message: "There aren't anymore monkeys! That's the whole barrel!"
+    },
+    {
+      error_type: "no_dbq_logical_combo",
+      object_id: "NoDBQLogicalErrorCombo",
+      message: "This is falling with style!"
+    }
+  ],
+  exampleFileNameB: [
+    {
+      error_type: "dbq_logical_combo_error",
+      index: 15,
+      object_id: "DBQLogicalComboError",
+      message: "You are a child's plaything!"
+    },
+    {
+      error_type: "wrong_doc_type",
+      message: "You are a sad, strange man, and you have my pity."
+    },
+    {
+      error_type: "unmatched_parens",
+      object_id: "UnmatchedParens",
+      list_of_positions: [1, 2, 3],
+      message:
+        "He ain’t the sharpest knife in the place where they keep the knives."
+    }
+  ]
+};
