@@ -18,7 +18,7 @@ import {
 configure({ adapter: new Adapter() });
 
 describe("Component: UploadErrorRow", () => {
-  it("renders without crashing", () => {
+  it("renders given basic props", () => {
     const wrapper = shallow(<UploadErrorRow label="The Answer" data={42} />);
     expect(wrapper.find(".upload-error-report__error-label").text()).toEqual(
       "The Answer:"
@@ -34,7 +34,52 @@ describe("Component: UploadErrorRow", () => {
  *   over style tweaks. So, we simply check which class is provided.
  */
 describe("Component: UploadErrorRow", () => {
-  it("renders an incorrect_value_in_row correctly", () => {
+  it("has proper open/close functionality", () => {
+    const incorrectValueInRow: ErrorReport = MockUploadFileReport!
+      .exampleFileNameA![0] as IncorrectValueInRow;
+
+    const wrapper = shallow(
+      <UploadErrorReport
+        errorReport={incorrectValueInRow}
+        filename={"stuff.xlsx"}
+        fileReportIndex={1}
+      />
+    );
+
+    expect(
+      wrapper
+        .find(".upload-error-report__header")
+        .hasClass("upload-error-report__header--closed")
+    ).toBeFalsy();
+    expect(
+      wrapper.find(".upload-error-report__arrow").hasClass("down")
+    ).toBeTruthy();
+    expect(wrapper.find(UploadErrorRow).length).toBe(5);
+
+    wrapper.find(".upload-error-report__header").simulate("click");
+    expect(
+      wrapper
+        .find(".upload-error-report__header")
+        .hasClass("upload-error-report__header--closed")
+    ).toBeTruthy();
+    expect(
+      wrapper.find(".upload-error-report__arrow").hasClass("up")
+    ).toBeTruthy();
+    expect(wrapper.find(UploadErrorRow).length).toBe(0);
+
+    wrapper.find(".upload-error-report__header").simulate("click");
+    expect(
+      wrapper
+        .find(".upload-error-report__header")
+        .hasClass("upload-error-report__header--closed")
+    ).toBeFalsy();
+    expect(
+      wrapper.find(".upload-error-report__arrow").hasClass("down")
+    ).toBeTruthy();
+    expect(wrapper.find(UploadErrorRow).length).toBe(5);
+  });
+
+  it("renders an 'incorrect_value_in_row' error report correctly", () => {
     const incorrectValueInRow: ErrorReport = MockUploadFileReport!
       .exampleFileNameA![0] as IncorrectValueInRow;
 
@@ -94,7 +139,7 @@ describe("Component: UploadErrorRow", () => {
     );
   });
 
-  it("renders an paren_error correctly", () => {
+  it("renders a 'paren_error' error report correctly", () => {
     const parenError: ErrorReport = MockUploadFileReport!
       .exampleFileNameA![1] as ParenError;
 
@@ -140,7 +185,7 @@ describe("Component: UploadErrorRow", () => {
     );
   });
 
-  it("renders an incorrectly_formatted_dbq_id correctly", () => {
+  it("renders an 'incorrectly_formatted_dbq_id' error report correctly", () => {
     const incorrectlyFormattedDbqId: ErrorReport = MockUploadFileReport!
       .exampleFileNameA![2] as IncorrectlyFormattedDbqId;
 
@@ -186,7 +231,7 @@ describe("Component: UploadErrorRow", () => {
     );
   });
 
-  it("renders an no_dbq_logical_combo correctly", () => {
+  it("renders a 'no_dbq_logical_combo' error report correctly", () => {
     const noDbqLogicalCombo: ErrorReport = MockUploadFileReport!
       .exampleFileNameA![3] as NoDbqLogicalCombo;
 
@@ -225,7 +270,7 @@ describe("Component: UploadErrorRow", () => {
     );
   });
 
-  it("renders an dbq_logical_combo_error correctly", () => {
+  it("renders a 'dbq_logical_combo_error' error report correctly", () => {
     const dbqLogicalComboError: ErrorReport = MockUploadFileReport!
       .exampleFileNameB![0] as DbqLogicalComboError;
 
@@ -271,7 +316,7 @@ describe("Component: UploadErrorRow", () => {
     );
   });
 
-  it("renders an wrong_doc_type correctly", () => {
+  it("renders a 'wrong_doc_type' error report correctly", () => {
     const wrongDocType: ErrorReport = MockUploadFileReport!
       .exampleFileNameB![1] as WrongDocType;
 
@@ -303,7 +348,7 @@ describe("Component: UploadErrorRow", () => {
     );
   });
 
-  it("renders an unmatched_parens correctly", () => {
+  it("renders an 'unmatched_parens' error report correctly", () => {
     const unmatchedParens: ErrorReport = MockUploadFileReport!
       .exampleFileNameB![2] as UnmatchedParens;
 
