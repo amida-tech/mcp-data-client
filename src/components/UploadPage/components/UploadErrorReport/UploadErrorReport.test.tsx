@@ -34,7 +34,7 @@ describe("Component: UploadErrorRow", () => {
  *   over style tweaks. So, we simply check which class is provided.
  */
 describe("Component: UploadErrorRow", () => {
-  it("renders an incorrect_value_in_row without crashing", () => {
+  it("renders an incorrect_value_in_row correctly", () => {
     const incorrectValueInRow: ErrorReport = MockUploadFileReport!
       .exampleFileNameA![0] as IncorrectValueInRow;
 
@@ -50,6 +50,11 @@ describe("Component: UploadErrorRow", () => {
       wrapper
         .find(".upload-error-report__header")
         .hasClass("upload-error-report__header--incorrect_value_in_row")
+    ).toBeTruthy();
+    expect(
+      wrapper
+        .find(".upload-error-report__body")
+        .hasClass("upload-error-report__body--incorrect_value_in_row")
     ).toBeTruthy();
     expect(wrapper.find(UploadErrorRow).length).toBe(5);
     expect(wrapper.find(UploadErrorRow).get(0).props).toEqual({
@@ -89,7 +94,7 @@ describe("Component: UploadErrorRow", () => {
     );
   });
 
-  it("renders an paren_error without crashing", () => {
+  it("renders an paren_error correctly", () => {
     const parenError: ErrorReport = MockUploadFileReport!
       .exampleFileNameA![1] as ParenError;
 
@@ -105,6 +110,11 @@ describe("Component: UploadErrorRow", () => {
       wrapper
         .find(".upload-error-report__header")
         .hasClass("upload-error-report__header--paren_error")
+    ).toBeTruthy();
+    expect(
+      wrapper
+        .find(".upload-error-report__body")
+        .hasClass("upload-error-report__body--paren_error")
     ).toBeTruthy();
     expect(wrapper.find(UploadErrorRow).length).toBe(3);
     expect(wrapper.find(UploadErrorRow).get(0).props).toEqual({
@@ -130,7 +140,7 @@ describe("Component: UploadErrorRow", () => {
     );
   });
 
-  it("renders an incorrectly_formatted_dbq_id without crashing", () => {
+  it("renders an incorrectly_formatted_dbq_id correctly", () => {
     const incorrectlyFormattedDbqId: ErrorReport = MockUploadFileReport!
       .exampleFileNameA![2] as IncorrectlyFormattedDbqId;
 
@@ -146,6 +156,11 @@ describe("Component: UploadErrorRow", () => {
       wrapper
         .find(".upload-error-report__header")
         .hasClass("upload-error-report__header--incorrectly_formatted_dbq_id")
+    ).toBeTruthy();
+    expect(
+      wrapper
+        .find(".upload-error-report__body")
+        .hasClass("upload-error-report__body--incorrectly_formatted_dbq_id")
     ).toBeTruthy();
     expect(wrapper.find(UploadErrorRow).length).toBe(3);
     expect(wrapper.find(UploadErrorRow).get(0).props).toEqual({
@@ -171,7 +186,7 @@ describe("Component: UploadErrorRow", () => {
     );
   });
 
-  it("renders an no_dbq_logical_combo without crashing", () => {
+  it("renders an no_dbq_logical_combo correctly", () => {
     const noDbqLogicalCombo: ErrorReport = MockUploadFileReport!
       .exampleFileNameA![3] as NoDbqLogicalCombo;
 
@@ -187,6 +202,11 @@ describe("Component: UploadErrorRow", () => {
       wrapper
         .find(".upload-error-report__header")
         .hasClass("upload-error-report__header--no_dbq_logical_combo")
+    ).toBeTruthy();
+    expect(
+      wrapper
+        .find(".upload-error-report__body")
+        .hasClass("upload-error-report__body--no_dbq_logical_combo")
     ).toBeTruthy();
     expect(wrapper.find(UploadErrorRow).length).toBe(2);
     expect(wrapper.find(UploadErrorRow).get(0).props).toEqual({
@@ -205,7 +225,7 @@ describe("Component: UploadErrorRow", () => {
     );
   });
 
-  it("renders an dbq_logical_combo_error without crashing", () => {
+  it("renders an dbq_logical_combo_error correctly", () => {
     const dbqLogicalComboError: ErrorReport = MockUploadFileReport!
       .exampleFileNameB![0] as DbqLogicalComboError;
 
@@ -221,6 +241,11 @@ describe("Component: UploadErrorRow", () => {
       wrapper
         .find(".upload-error-report__header")
         .hasClass("upload-error-report__header--dbq_logical_combo_error")
+    ).toBeTruthy();
+    expect(
+      wrapper
+        .find(".upload-error-report__body")
+        .hasClass("upload-error-report__body--dbq_logical_combo_error")
     ).toBeTruthy();
     expect(wrapper.find(UploadErrorRow).length).toBe(3);
     expect(wrapper.find(UploadErrorRow).get(0).props).toEqual({
@@ -246,7 +271,7 @@ describe("Component: UploadErrorRow", () => {
     );
   });
 
-  it("renders an wrong_doc_type without crashing", () => {
+  it("renders an wrong_doc_type correctly", () => {
     const wrongDocType: ErrorReport = MockUploadFileReport!
       .exampleFileNameB![1] as WrongDocType;
 
@@ -263,6 +288,11 @@ describe("Component: UploadErrorRow", () => {
         .find(".upload-error-report__header")
         .hasClass("upload-error-report__header--wrong_doc_type")
     ).toBeTruthy();
+    expect(
+      wrapper
+        .find(".upload-error-report__body")
+        .hasClass("upload-error-report__body--wrong_doc_type")
+    ).toBeTruthy();
     expect(wrapper.find(UploadErrorRow).length).toBe(1);
     expect(wrapper.find(UploadErrorRow).get(0).props).toEqual({
       label: "Message",
@@ -273,7 +303,7 @@ describe("Component: UploadErrorRow", () => {
     );
   });
 
-  it("renders an unmatched_parens without crashing", () => {
+  it("renders an unmatched_parens correctly", () => {
     const unmatchedParens: ErrorReport = MockUploadFileReport!
       .exampleFileNameB![2] as UnmatchedParens;
 
@@ -289,6 +319,11 @@ describe("Component: UploadErrorRow", () => {
       wrapper
         .find(".upload-error-report__header")
         .hasClass("upload-error-report__header--unmatched_parens")
+    ).toBeTruthy();
+    expect(
+      wrapper
+        .find(".upload-error-report__body")
+        .hasClass("upload-error-report__body--unmatched_parens")
     ).toBeTruthy();
     expect(wrapper.find(UploadErrorRow).length).toBe(3);
     expect(wrapper.find(UploadErrorRow).get(0).props).toEqual({
