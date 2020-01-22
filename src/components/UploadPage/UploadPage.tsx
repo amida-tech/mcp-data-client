@@ -1,7 +1,7 @@
 import React from "react";
 import { dataService } from "../../services/data/DataService";
 import { UploadFileReport } from "./components/";
-import { FileReport, MockUploadFileReport } from "../../models/FileReport";
+import { FileReport } from "../../models/FileReport";
 
 interface UploadPageState {
   loading: boolean;

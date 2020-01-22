@@ -17,44 +17,38 @@
     }
 
     @include modifier("incorrect_value_in_row") {
-      background-color: $PRIMARY_LABEL_TEXT_COLOR--WARNING;
-      border-color: $PRIMARY_LABEL_TEXT_COLOR--WARNING;
+      background-color: $VARIANCE_BACKGROUND_COLOR_1;
+      border-color: $VARIANCE_BACKGROUND_COLOR_1;
     }
 
     @include modifier("paren_error") {
-      background-color: getThematicValue(SYSTEM_PINK, dark);
-      border-color: getThematicValue(SYSTEM_PINK, dark);
+      background-color: $VARIANCE_BACKGROUND_COLOR_2;
+      border-color: $VARIANCE_BACKGROUND_COLOR_2;
     }
 
     @include modifier("incorrectly_formatted_dbq_id") {
-      background-color: getThematicValue(SYSTEM_INDIGO, light);
-      border-color: getThematicValue(SYSTEM_INDIGO, light);
+      background-color: $VARIANCE_BACKGROUND_COLOR_3;
+      border-color: $VARIANCE_BACKGROUND_COLOR_3;
     }
 
     @include modifier("no_dbq_logical_combo") {
-      background-color: getThematicValue(
-        PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR,
-        dark
-      );
-      border-color: getThematicValue(
-        PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR,
-        dark
-      );
+      background-color: $VARIANCE_BACKGROUND_COLOR_4;
+      border-color: $VARIANCE_BACKGROUND_COLOR_4;
     }
 
     @include modifier("dbq_logical_combo_error") {
-      background-color: $TERTIARY_DISPLAY_TEXT_COLOR;
-      border-color: $TERTIARY_DISPLAY_TEXT_COLOR;
+      background-color: $VARIANCE_BACKGROUND_COLOR_5;
+      border-color: $VARIANCE_BACKGROUND_COLOR_5;
     }
 
     @include modifier("wrong_doc_type") {
-      background-color: getThematicValue(SYSTEM_PURPLE, light);
-      border-color: getThematicValue(SYSTEM_PURPLE, light);
+      background-color: $VARIANCE_BACKGROUND_COLOR_6;
+      border-color: $VARIANCE_BACKGROUND_COLOR_6;
     }
 
     @include modifier("unmatched_parens") {
-      background-color: getThematicValue(APPLICATION_BORDER_COLOR, dark);
-      border-color: getThematicValue(APPLICATION_BORDER_COLOR, dark);
+      background-color: $VARIANCE_BACKGROUND_COLOR_7;
+      border-color: $VARIANCE_BACKGROUND_COLOR_7;
     }
   }
 
@@ -68,34 +62,31 @@
     background: $TERTIARY_CONTENT_BACKGROUND_COLOR;
 
     @include modifier("incorrect_value_in_row") {
-      border-color: $PRIMARY_LABEL_TEXT_COLOR--WARNING;
+      border-color: $VARIANCE_BACKGROUND_COLOR_1;
     }
 
     @include modifier("paren_error") {
-      border-color: getThematicValue(SYSTEM_PINK, dark);
+      border-color: $VARIANCE_BACKGROUND_COLOR_2;
     }
 
     @include modifier("incorrectly_formatted_dbq_id") {
-      border-color: getThematicValue(SYSTEM_INDIGO, light);
+      border-color: $VARIANCE_BACKGROUND_COLOR_3;
     }
 
     @include modifier("no_dbq_logical_combo") {
-      border-color: getThematicValue(
-        PRIMARY_HEADER_CONTENT_BACKGROUND_COLOR,
-        dark
-      );
+      border-color: $VARIANCE_BACKGROUND_COLOR_4;
     }
 
     @include modifier("dbq_logical_combo_error") {
-      border-color: $TERTIARY_DISPLAY_TEXT_COLOR;
+      border-color: $VARIANCE_BACKGROUND_COLOR_5;
     }
 
     @include modifier("wrong_doc_type") {
-      border-color: getThematicValue(SYSTEM_PURPLE, light);
+      border-color: $VARIANCE_BACKGROUND_COLOR_6;
     }
 
     @include modifier("unmatched_parens") {
-      border-color: getThematicValue(APPLICATION_BORDER_COLOR, dark);
+      border-color: $VARIANCE_BACKGROUND_COLOR_7;
     }
   }
 
