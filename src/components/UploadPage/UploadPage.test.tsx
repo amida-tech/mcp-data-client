@@ -7,6 +7,8 @@ import client from "../../services/ApolloClient";
 import UploadPage from "./UploadPage";
 import { MockDataService } from "../../services/data/DataService.mock";
 import { Outcome } from "../../util/MockSettings";
+import { UploadFileReport } from "./components";
+import { MockUploadFileReport } from "../../models/FileReport";
 
 configure({ adapter: new Adapter() });
 
@@ -70,8 +72,21 @@ describe("Component: UploadPage", () => {
       "Validation report"
     );
     expect(wrapper.find(".upload-page__error-panel").exists()).toBe(true);
-    // expect(wrapper.find)
-    // Complicated new stuff.
+    expect(wrapper.find(UploadFileReport).length).toBe(2);
+
+    const errorPanel = wrapper.find(".upload-page__error-panel");
+    expect(errorPanel.length).toBe(2);
+    expect(errorPanel.get(0).key).toEqual("upload-page__file-report-0");
+    expect(errorPanel.get(1).key).toEqual("upload-page__file-report-1");
+
+    expect(wrapper.find(UploadFileReport).get(0).props).toEqual({
+      filename: "exampleFileNameA",
+      errorReports: MockUploadFileReport.exampleFileNameA
+    });
+    expect(wrapper.find(UploadFileReport).get(1).props).toEqual({
+      filename: "exampleFileNameB",
+      errorReports: MockUploadFileReport.exampleFileNameB
+    });
   });
 
   it("is rejected in it attempts to upload a file", async () => {
