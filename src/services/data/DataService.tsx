@@ -21,11 +21,13 @@ class DataService {
       formData.append("files", files[x], files[x].name);
     }
     return fetch(fullURI, Call.postForm(formData)).then(response => {
-      return response.json().then((data: any) => ({
-        status: response.status,
-        message: data.message,
-        fileReport: data.files
-      }));
+      return response.json().then((data: any) => {
+        return {
+          status: response.status,
+          message: data.message,
+          fileReport: data.files
+        };
+      });
     });
   }
 }
