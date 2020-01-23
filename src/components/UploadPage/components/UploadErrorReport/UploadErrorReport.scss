@@ -1,0 +1,111 @@
+@include block("upload-error-report") {
+  padding: 0.2em;
+  width: 18.5em;
+
+  @include element("header") {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $PRIMARY_LABEL_TEXT_COLOR--WARNING;
+    color: $PRIMARY_LABEL_TEXT_COLOR--DARK;
+    border: $PRIMARY_LABEL_TEXT_COLOR--WARNING solid 1px;
+    border-radius: 4px 4px 0 0;
+    padding: 0.3em 0.5em;
+
+    @include modifier("closed") {
+      border-radius: 4px;
+    }
+
+    @include modifier("incorrect_value_in_row") {
+      background-color: $VARIANCE_BACKGROUND_COLOR_1;
+      border-color: $VARIANCE_BACKGROUND_COLOR_1;
+    }
+
+    @include modifier("paren_error") {
+      background-color: $VARIANCE_BACKGROUND_COLOR_2;
+      border-color: $VARIANCE_BACKGROUND_COLOR_2;
+    }
+
+    @include modifier("incorrectly_formatted_dbq_id") {
+      background-color: $VARIANCE_BACKGROUND_COLOR_3;
+      border-color: $VARIANCE_BACKGROUND_COLOR_3;
+    }
+
+    @include modifier("no_dbq_logical_combo") {
+      background-color: $VARIANCE_BACKGROUND_COLOR_4;
+      border-color: $VARIANCE_BACKGROUND_COLOR_4;
+    }
+
+    @include modifier("dbq_logical_combo_error") {
+      background-color: $VARIANCE_BACKGROUND_COLOR_5;
+      border-color: $VARIANCE_BACKGROUND_COLOR_5;
+    }
+
+    @include modifier("wrong_doc_type") {
+      background-color: $VARIANCE_BACKGROUND_COLOR_6;
+      border-color: $VARIANCE_BACKGROUND_COLOR_6;
+    }
+
+    @include modifier("unmatched_parens") {
+      background-color: $VARIANCE_BACKGROUND_COLOR_7;
+      border-color: $VARIANCE_BACKGROUND_COLOR_7;
+    }
+  }
+
+  @include element("body") {
+    display: flex;
+    flex-direction: column;
+    min-height: 8.5em;
+    border: $PRIMARY_LABEL_TEXT_COLOR--WARNING solid 1px;
+    border-radius: 0 0 4px 4px;
+    padding: 0.5em;
+    background: $TERTIARY_CONTENT_BACKGROUND_COLOR;
+
+    @include modifier("incorrect_value_in_row") {
+      border-color: $VARIANCE_BACKGROUND_COLOR_1;
+    }
+
+    @include modifier("paren_error") {
+      border-color: $VARIANCE_BACKGROUND_COLOR_2;
+    }
+
+    @include modifier("incorrectly_formatted_dbq_id") {
+      border-color: $VARIANCE_BACKGROUND_COLOR_3;
+    }
+
+    @include modifier("no_dbq_logical_combo") {
+      border-color: $VARIANCE_BACKGROUND_COLOR_4;
+    }
+
+    @include modifier("dbq_logical_combo_error") {
+      border-color: $VARIANCE_BACKGROUND_COLOR_5;
+    }
+
+    @include modifier("wrong_doc_type") {
+      border-color: $VARIANCE_BACKGROUND_COLOR_6;
+    }
+
+    @include modifier("unmatched_parens") {
+      border-color: $VARIANCE_BACKGROUND_COLOR_7;
+    }
+  }
+
+  @include element("error-row") {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.1em;
+  }
+
+  @include element("error-label") {
+    font-weight: bold;
+    text-align: left;
+    text-transform: capitalize;
+    width: 35%;
+  }
+
+  @include element("error-data") {
+    text-align: left;
+    width: 60%;
+    word-break: break-word;
+  }
+}

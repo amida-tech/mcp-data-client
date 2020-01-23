@@ -10,6 +10,7 @@
 @import "utilities/modifiers";
 @import "utilities/typography";
 @import "utilities/thirdparty";
+@import "utilities/icons";
 
 // Base Styling -- applies to all pages
 @import "base/base";
@@ -19,3 +20,5 @@
 @import "../components/Layout/Layout";
 @import "../components/Nav/Nav";
 @import "../components/UploadPage/UploadPage";
+@import "../components/UploadPage/components/UploadErrorReport/UploadErrorReport";
+@import "../components/UploadPage/components/UploadFileReport/UploadFileReport";

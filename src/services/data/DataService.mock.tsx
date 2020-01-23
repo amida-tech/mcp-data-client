@@ -1,6 +1,6 @@
-import { MockSettings } from "../../util/MockSettings";
-import { Outcome } from "../../util/Constants";
+import { MockSettings, Outcome } from "../../util/MockSettings";
 import { dataService } from "./DataService";
+import { MockUploadFileReport } from "../../models/FileReport";
 
 /**
  * The mock module is used as part of testing other modules
@@ -21,7 +21,7 @@ export class MockDataService extends MockSettings {
         Promise.resolve({
           status: 200,
           message: "Validation report",
-          fileReport: { report: "I am the validator." }
+          fileReport: MockUploadFileReport
         })
       );
     } else if (this.outcomeSetting === Outcome.REJECT) {
