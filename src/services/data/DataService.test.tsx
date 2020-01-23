@@ -42,21 +42,11 @@ describe("Service: DataService", () => {
           ]
         }
       };
-      // const ws = new WritableStream();
-      // const defaultWriter = ws.getWriter();
-      // const encoder = new TextEncoder();
-      // const encoded = encoder.encode(JSON.stringify(body));
-      // encoded.forEach((chunk) => {
-      //   defaultWriter.ready
-      //     .then(() => defaultWriter.write(chunk))
-      // });
-      // defaultWriter.ready.then(() => defaultWriter.close());
 
       const rs = new Stream.Readable();
       rs.push(JSON.stringify(body));
       rs.push(null);
 
-      // const response: Response = new Response(new Blob(), init);
       const response: Response = new Response(rs.read(), init);
 
       let dataServiceSpy = jest
@@ -67,10 +57,14 @@ describe("Service: DataService", () => {
 
       expect(dataServiceSpy).toHaveBeenCalled();
       testResult.then(response => {
-        console.log("JAMES");
         expect(response.status).toEqual(200);
         expect(response.message).toEqual(undefined);
-        console.log(response.fileReport);
+        expect(response.fileReport["example0.txt"]).toEqual(
+          body.files["example0.txt"]
+        );
+        expect(response.fileReport["example1.xlsx"]).toEqual(
+          body.files["example1.xlsx"]
+        );
       });
     });
   });
