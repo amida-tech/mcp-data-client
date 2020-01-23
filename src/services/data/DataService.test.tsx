@@ -1,5 +1,6 @@
 import { dataService } from "./DataService";
 import { Stream } from "stream";
+import Call from "../../models/Call";
 
 describe("Service: DataService", () => {
   describe("uploadAndValidateFile", () => {
@@ -55,7 +56,11 @@ describe("Service: DataService", () => {
 
       const testResult = dataService.uploadAndValidateFile(fileList);
 
-      expect(dataServiceSpy).toHaveBeenCalled();
+      expect(dataServiceSpy).toHaveBeenCalledWith(
+        "http://localhost:5000/api/excel/validate",
+        expect.any(Call) // Matching an exact TypeScripted object is difficult.
+      );
+
       testResult.then(response => {
         expect(response.status).toEqual(200);
         expect(response.message).toEqual(undefined);

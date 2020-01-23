@@ -14,7 +14,7 @@ export class MockDataService extends MockSettings {
     this.setOutcomeSetting(Outcome.SUCCESS);
   }
 
-  uploadAndValidateFile(data: any, fullURI: string) {
+  uploadAndValidateFile(data: any) {
     const callSpy = jest.spyOn(dataService, "uploadAndValidateFile");
     if (this.outcomeSetting === Outcome.SUCCESS) {
       callSpy.mockResolvedValue(
