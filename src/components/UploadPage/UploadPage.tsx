@@ -30,7 +30,7 @@ const UploadPage: React.FC = () => {
         fileReports: {}
       });
       dataService
-        .postMultipartRequest(event.target.files)
+        .uploadAndValidateFile(event.target.files)
         .then(response => {
           if (response.status !== 200) {
             // A response of *any* kind is technically success.

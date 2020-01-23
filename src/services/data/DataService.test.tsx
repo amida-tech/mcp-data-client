@@ -2,7 +2,7 @@ import { dataService } from "./DataService";
 import { Stream } from "stream";
 
 describe("Service: DataService", () => {
-  describe("postMultipartRequest", () => {
+  describe("uploadAndValidateFile", () => {
     it("returns a proper response", () => {
       const file0 = new File(["example0"], "example0.txt", {
         type: "text/plain",
@@ -53,7 +53,7 @@ describe("Service: DataService", () => {
         .spyOn(window, "fetch")
         .mockImplementation(() => Promise.resolve(response));
 
-      const testResult = dataService.postMultipartRequest(fileList);
+      const testResult = dataService.uploadAndValidateFile(fileList);
 
       expect(dataServiceSpy).toHaveBeenCalled();
       testResult.then(response => {

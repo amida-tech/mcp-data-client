@@ -55,10 +55,7 @@ describe("Component: UploadPage", () => {
   it("is successful in its attempts to upload a file", async () => {
     mockDataService.setOutcomeSetting(Outcome.SUCCESS);
     mockDataService.setOutcomeAwait(true);
-    const callSpy = mockDataService.postMultipartRequest(
-      {},
-      "" + process.env.REACT_APP_MCP_DATA_MAPPING_UTIL
-    );
+    const callSpy = mockDataService.uploadAndValidateFile({});
     const wrapper = shallow(<UploadPage />);
     defaultState(wrapper);
     loadingState(wrapper);
@@ -92,10 +89,7 @@ describe("Component: UploadPage", () => {
   it("is rejected in it attempts to upload a file", async () => {
     mockDataService.setOutcomeSetting(Outcome.REJECT);
     mockDataService.setOutcomeAwait(true);
-    const callSpy = mockDataService.postMultipartRequest(
-      {},
-      "" + process.env.REACT_APP_MCP_DATA_MAPPING_UTIL
-    );
+    const callSpy = mockDataService.uploadAndValidateFile({});
     const wrapper = shallow(<UploadPage />);
     defaultState(wrapper);
     loadingState(wrapper);
@@ -112,10 +106,7 @@ describe("Component: UploadPage", () => {
   it("fails in it attempts to upload a file", async () => {
     mockDataService.setOutcomeSetting(Outcome.FAILURE);
     mockDataService.setOutcomeAwait(true);
-    const callSpy = mockDataService.postMultipartRequest(
-      {},
-      "" + process.env.REACT_APP_MCP_DATA_MAPPING_UTIL
-    );
+    const callSpy = mockDataService.uploadAndValidateFile({});
     const wrapper = shallow(<UploadPage />);
     defaultState(wrapper);
     loadingState(wrapper);
