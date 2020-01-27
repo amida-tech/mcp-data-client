@@ -10,14 +10,19 @@ RUN yarn install --pure-lockfile
 RUN yarn build
 RUN yarn install --production --frozen-lockfile
 
-FROM node:12.14.1-alpine3.11
+FROM nginx:1.17.8
 
-WORKDIR /app/
+RUN apt-get update && apt-get install gzip
 
-COPY --from=builder /app/ /app/
+RUN rm /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/build /usr/share/nginx/html
+# COPY --from=builder /app/public/favicon.ico /usr/share/nginx/html/favicon.ico
+COPY --from=builder /app/nginx.conf /etc/nginx/conf.d/default.conf 
+COPY --from=builder /app/docker-entrypoint.sh /etc/nginx/docker-entrypoint.sh
+RUN chmod a+x /etc/nginx/docker-entrypoint.sh
 
-# expose port 4000
-EXPOSE 3000
+# expose port 80
+EXPOSE 80
 
 # cmd to start service
-CMD ["npm", "start"]
+ENTRYPOINT ["/etc/nginx/docker-entrypoint.sh"]
