@@ -3,8 +3,9 @@ import Call from "../../models/Call";
 
 /**
  * Used to allow the client to access global variables,
- * as "env" is not really available in an Nginx environment.
- * Move me to a more global location if used again later.
+ * as process.env is not really available in an Nginx
+ * environment. Move me to a more global location if
+ * used again later.
  */
 declare global {
   interface Window {
