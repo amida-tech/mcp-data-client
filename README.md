@@ -40,3 +40,8 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Docker
+
+Build with `docker build -t mcp-data-client .`
+Run with standard command line `docker run -p 3000:80 -e REACT_APP_MCP_DATA_MAPPING_UTIL=http://localhost:5000/ mcp-data-client`

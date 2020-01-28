@@ -12,7 +12,8 @@ import {
   DbqLogicalComboError,
   WrongDocType,
   UnmatchedParens,
-  MockUploadFileReport
+  MockUploadFileReport,
+  MarkForComplexityIsUnchecked
 } from "../../../../models/FileReport";
 
 configure({ adapter: new Adapter() });
@@ -391,6 +392,47 @@ describe("Component: UploadErrorRow", () => {
     });
     expect(wrapper.find(UploadErrorRow).get(2).key).toEqual(
       "upload-error-report-key-stuff.xlsx-1-2"
+    );
+  });
+
+  it("renders a 'mark_for_complexity_is_unchecked' error report correctly", () => {
+    const markForComplexityIsUnchecked: ErrorReport = MockUploadFileReport!
+      .exampleFileNameB![3] as MarkForComplexityIsUnchecked;
+
+    const wrapper = shallow(
+      <UploadErrorReport
+        errorReport={markForComplexityIsUnchecked}
+        filename={"stuff.xlsx"}
+        fileReportIndex={1}
+      />
+    );
+
+    expect(
+      wrapper
+        .find(".upload-error-report__header")
+        .hasClass(
+          "upload-error-report__header--mark_for_complexity_is_unchecked"
+        )
+    ).toBeTruthy();
+    expect(
+      wrapper
+        .find(".upload-error-report__body")
+        .hasClass("upload-error-report__body--mark_for_complexity_is_unchecked")
+    ).toBeTruthy();
+    expect(wrapper.find(UploadErrorRow).length).toBe(2);
+    expect(wrapper.find(UploadErrorRow).get(0).props).toEqual({
+      label: "Object Id",
+      data: markForComplexityIsUnchecked.object_id
+    });
+    expect(wrapper.find(UploadErrorRow).get(0).key).toEqual(
+      "upload-error-report-key-stuff.xlsx-1-0"
+    );
+    expect(wrapper.find(UploadErrorRow).get(1).props).toEqual({
+      label: "Message",
+      data: markForComplexityIsUnchecked.message
+    });
+    expect(wrapper.find(UploadErrorRow).get(1).key).toEqual(
+      "upload-error-report-key-stuff.xlsx-1-1"
     );
   });
 });

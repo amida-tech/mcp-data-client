@@ -14,8 +14,8 @@ export class MockDataService extends MockSettings {
     this.setOutcomeSetting(Outcome.SUCCESS);
   }
 
-  postMultipartRequest(data: any, fullURI: string) {
-    const callSpy = jest.spyOn(dataService, "postMultipartRequest");
+  uploadAndValidateFile(data: any) {
+    const callSpy = jest.spyOn(dataService, "uploadAndValidateFile");
     if (this.outcomeSetting === Outcome.SUCCESS) {
       callSpy.mockResolvedValue(
         Promise.resolve({

@@ -50,6 +50,11 @@
       background-color: $VARIANCE_BACKGROUND_COLOR_7;
       border-color: $VARIANCE_BACKGROUND_COLOR_7;
     }
+
+    @include modifier("mark_for_complexity_is_unchecked") {
+      background-color: $VARIANCE_BACKGROUND_COLOR_8;
+      border-color: $VARIANCE_BACKGROUND_COLOR_8;
+    }
   }
 
   @include element("body") {
@@ -87,6 +92,10 @@
 
     @include modifier("unmatched_parens") {
       border-color: $VARIANCE_BACKGROUND_COLOR_7;
+    }
+
+    @include modifier("mark_for_complexity_is_unchecked") {
+      border-color: $VARIANCE_BACKGROUND_COLOR_8;
     }
   }
 
