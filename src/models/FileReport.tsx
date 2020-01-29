@@ -12,6 +12,8 @@ export type FileReport = {
  */
 export interface IncorrectValueInRow {
   error_type: "incorrect_value_in_row";
+  object_id: string;
+  label: string;
   column_name: string;
   index: number;
   excel: string;
@@ -23,6 +25,7 @@ export interface ParenError {
   error_type: "paren_error";
   character_index: number;
   object_id: string;
+  label: string;
   message: string;
 }
 
@@ -30,12 +33,14 @@ export interface IncorrectlyFormattedDbqId {
   error_type: "incorrectly_formatted_dbq_id";
   formatted_dbq_id: string;
   object_id: string;
+  label: string;
   message: string;
 }
 
 export interface NoDbqLogicalCombo {
   error_type: "no_dbq_logical_combo";
   object_id: string;
+  label: string;
   message: string;
 }
 
@@ -43,6 +48,7 @@ export interface DbqLogicalComboError {
   error_type: "dbq_logical_combo_error";
   index: number;
   object_id: string;
+  label: string;
   message: string;
 }
 
@@ -54,6 +60,7 @@ export interface WrongDocType {
 export interface UnmatchedParens {
   error_type: "unmatched_parens";
   object_id: string;
+  label: string;
   list_of_positions: Array<number>;
   message: string;
 }
@@ -61,6 +68,7 @@ export interface UnmatchedParens {
 export interface MarkForComplexityIsUnchecked {
   error_type: "mark_for_complexity_is_unchecked";
   object_id: string;
+  label: string;
   message: string;
 }
 
@@ -80,6 +88,7 @@ export type ErrorReport =
  */
 export enum ErrorFieldLabels {
   error_type = "Type",
+  label = "Label",
   character_index = "Char. Index",
   column_name = "Column",
   object_id = "Object Id",
@@ -114,11 +123,12 @@ const ErrorKeyOrderPreference: KeyedNumbersObject = {
   character_index: 2,
   column_name: 3,
   object_id: 4,
-  formatted_dbq_id: 5,
-  json: 6,
-  excel: 7,
-  list_of_positions: 8,
-  message: 9
+  label: 5,
+  formatted_dbq_id: 6,
+  json: 7,
+  excel: 8,
+  list_of_positions: 9,
+  message: 10
 };
 
 /**
@@ -141,6 +151,8 @@ export const MockUploadFileReport: FileReport = {
   exampleFileNameA: [
     {
       error_type: "incorrect_value_in_row",
+      object_id: "IncorrectValueInRowObjectId",
+      label: "Doh!",
       column_name: "Column B",
       index: 10,
       excel: "IncorrectValueInRow.xlsx",
@@ -151,17 +163,20 @@ export const MockUploadFileReport: FileReport = {
       error_type: "paren_error",
       character_index: 5,
       object_id: "ParenErrorObjectId",
+      label: "Ya got bumpkis!",
       message: "To infinity, and beyond!"
     },
     {
       error_type: "incorrectly_formatted_dbq_id",
       formatted_dbq_id: "Formatted DBQ",
       object_id: "IncorrectlyFormattedDBQId",
+      label: "(Scream!)",
       message: "There aren't anymore monkeys! That's the whole barrel!"
     },
     {
       error_type: "no_dbq_logical_combo",
       object_id: "NoDBQLogicalErrorCombo",
+      label: "Zut alors!",
       message: "This is falling with style!"
     }
   ],
@@ -170,6 +185,7 @@ export const MockUploadFileReport: FileReport = {
       error_type: "dbq_logical_combo_error",
       index: 15,
       object_id: "DBQLogicalComboError",
+      label: "Mama mia!",
       message: "You are a child's plaything!"
     },
     {
@@ -179,6 +195,7 @@ export const MockUploadFileReport: FileReport = {
     {
       error_type: "unmatched_parens",
       object_id: "UnmatchedParens",
+      label: "Waaaah!",
       list_of_positions: [1, 2, 3],
       message:
         "He ain’t the sharpest knife in the place where they keep the knives."
@@ -186,6 +203,7 @@ export const MockUploadFileReport: FileReport = {
     {
       error_type: "mark_for_complexity_is_unchecked",
       object_id: "MarkForComplexityIsUnchecked",
+      label: "Ay caramba!",
       message:
         "The word I'm searching for I can't say because there's preschool toys present."
     }
