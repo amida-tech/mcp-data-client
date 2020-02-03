@@ -43,11 +43,16 @@ const UploadErrorReport: React.FC<Props> = ({
           />
           <UploadErrorRow
             key={`upload-error-report-key-${filename}-${fileReportIndex}-1`}
+            label={ErrorFieldLabels.label}
+            data={errorReport.label}
+          />
+          <UploadErrorRow
+            key={`upload-error-report-key-${filename}-${fileReportIndex}-2`}
             label={ErrorFieldLabels.list_of_positions}
             data={errorReport.list_of_positions.join(", ")}
           />
           <UploadErrorRow
-            key={`upload-error-report-key-${filename}-${fileReportIndex}-2`}
+            key={`upload-error-report-key-${filename}-${fileReportIndex}-3`}
             label={ErrorFieldLabels.message}
             data={errorReport.message}
           />
