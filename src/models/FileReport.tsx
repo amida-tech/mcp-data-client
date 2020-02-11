@@ -65,6 +65,11 @@ export interface UnmatchedParens {
   message: string;
 }
 
+export interface NoJsonMapping {
+  error_type: "no_json_mapping";
+  message: string;
+}
+
 export type ErrorReport =
   | IncorrectValueInRow
   | ParenError
@@ -72,7 +77,8 @@ export type ErrorReport =
   | NoDbqLogicalCombo
   | DbqLogicalComboError
   | WrongDocType
-  | UnmatchedParens;
+  | UnmatchedParens
+  | NoJsonMapping;
 
 /**
  * Human-readable labels for the individual fields. Put here instead of
@@ -98,7 +104,8 @@ export enum ErrorTypeLabels {
   no_dbq_logical_combo = "No DBQ Logical Combo",
   dbq_logical_combo_error = "DBQ Logical Combo Error",
   wrong_doc_type = "Wrong Document Type",
-  unmatched_parens = "Unmatched Parentheses"
+  unmatched_parens = "Unmatched Parentheses",
+  no_json_mapping = "No JSON Mapping"
 }
 
 /**
@@ -190,6 +197,10 @@ export const MockUploadFileReport: FileReport = {
       list_of_positions: [1, 2, 3],
       message:
         "He ain’t the sharpest knife in the place where they keep the knives."
+    },
+    {
+      error_type: "no_json_mapping",
+      message: "I have a question. No. Wait. I have all the questions."
     }
   ]
 };
