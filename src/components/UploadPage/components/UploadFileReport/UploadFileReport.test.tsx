@@ -54,7 +54,7 @@ describe("Component: UploadFileReport", () => {
         errorReports={MockUploadFileReport!.exampleFileNameB}
       />
     );
-    expect(wrapper.find(UploadErrorReport).length).toBe(4);
+    expect(wrapper.find(UploadErrorReport).length).toBe(3);
     expect(wrapper.find(UploadErrorReport).get(0).props).toEqual({
       errorReport: MockUploadFileReport!.exampleFileNameB![0],
       filename: "example.xlsx",
@@ -69,11 +69,6 @@ describe("Component: UploadFileReport", () => {
       errorReport: MockUploadFileReport!.exampleFileNameB![2],
       filename: "example.xlsx",
       fileReportIndex: 2
-    });
-    expect(wrapper.find(UploadErrorReport).get(3).props).toEqual({
-      errorReport: MockUploadFileReport!.exampleFileNameB![3],
-      filename: "example.xlsx",
-      fileReportIndex: 3
     });
   });
 });
