@@ -65,13 +65,6 @@ export interface UnmatchedParens {
   message: string;
 }
 
-export interface MarkForComplexityIsUnchecked {
-  error_type: "mark_for_complexity_is_unchecked";
-  object_id: string;
-  label: string;
-  message: string;
-}
-
 export type ErrorReport =
   | IncorrectValueInRow
   | ParenError
@@ -79,8 +72,7 @@ export type ErrorReport =
   | NoDbqLogicalCombo
   | DbqLogicalComboError
   | WrongDocType
-  | UnmatchedParens
-  | MarkForComplexityIsUnchecked;
+  | UnmatchedParens;
 
 /**
  * Human-readable labels for the individual fields. Put here instead of
@@ -106,8 +98,7 @@ export enum ErrorTypeLabels {
   no_dbq_logical_combo = "No DBQ Logical Combo",
   dbq_logical_combo_error = "DBQ Logical Combo Error",
   wrong_doc_type = "Wrong Document Type",
-  unmatched_parens = "Unmatched Parentheses",
-  mark_for_complexity_is_unchecked = "Mark for Complexity Unchecked"
+  unmatched_parens = "Unmatched Parentheses"
 }
 
 /**
@@ -199,13 +190,6 @@ export const MockUploadFileReport: FileReport = {
       list_of_positions: [1, 2, 3],
       message:
         "He ain’t the sharpest knife in the place where they keep the knives."
-    },
-    {
-      error_type: "mark_for_complexity_is_unchecked",
-      object_id: "MarkForComplexityIsUnchecked",
-      label: "Ay caramba!",
-      message:
-        "The word I'm searching for I can't say because there's preschool toys present."
     }
   ]
 };
