@@ -13,7 +13,7 @@ import {
   WrongDocType,
   UnmatchedParens,
   MockUploadFileReport,
-  MarkForComplexityIsUnchecked
+  NoJsonMapping
 } from "../../../../models/FileReport";
 
 configure({ adapter: new Adapter() });
@@ -441,6 +441,38 @@ describe("Component: UploadErrorRow", () => {
     });
     expect(wrapper.find(UploadErrorRow).get(3).key).toEqual(
       "upload-error-report-key-stuff.xlsx-1-3"
+    );
+  });
+
+  it("renders a 'no_json_mapping' error report correctly", () => {
+    const noJsonMapping: ErrorReport = MockUploadFileReport!
+      .exampleFileNameB![3] as NoJsonMapping;
+
+    const wrapper = shallow(
+      <UploadErrorReport
+        errorReport={noJsonMapping}
+        filename={"stuff.xlsx"}
+        fileReportIndex={1}
+      />
+    );
+
+    expect(
+      wrapper
+        .find(".upload-error-report__header")
+        .hasClass("upload-error-report__header--no_json_mapping")
+    ).toBeTruthy();
+    expect(
+      wrapper
+        .find(".upload-error-report__body")
+        .hasClass("upload-error-report__body--no_json_mapping")
+    ).toBeTruthy();
+    expect(wrapper.find(UploadErrorRow).length).toBe(1);
+    expect(wrapper.find(UploadErrorRow).get(0).props).toEqual({
+      label: "Message",
+      data: noJsonMapping.message
+    });
+    expect(wrapper.find(UploadErrorRow).get(0).key).toEqual(
+      "upload-error-report-key-stuff.xlsx-1-0"
     );
   });
 });
