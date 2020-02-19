@@ -20,7 +20,7 @@ const UploadPage: React.FC = () => {
     }
   );
 
-  const onUploadFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleUploadFile = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     if (event.target.files && event.target.files[0]) {
       setUploadPageState({
@@ -70,7 +70,7 @@ const UploadPage: React.FC = () => {
         <span className="upload-page__file-instructions">Select file:</span>
         <input
           className="upload-page__file-input"
-          onChange={onUploadFile}
+          onChange={handleUploadFile}
           type="file"
           multiple
         />

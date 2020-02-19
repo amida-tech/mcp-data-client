@@ -10,7 +10,7 @@ interface Props {
 const UploadFileReport: React.FC<Props> = ({ filename, errorReports }) => {
   const [isOpen, setOpen] = React.useState(true);
 
-  const onToggle = () => {
+  const handleToggle = () => {
     setOpen(!isOpen);
   };
 
@@ -32,7 +32,7 @@ const UploadFileReport: React.FC<Props> = ({ filename, errorReports }) => {
 
   return (
     <div className="upload-file-report">
-      <div className="upload-file-report__header" onClick={onToggle}>
+      <div className="upload-file-report__header" onClick={handleToggle}>
         {filename}
         <i
           className={`upload-file-report__arrow whiteback ${

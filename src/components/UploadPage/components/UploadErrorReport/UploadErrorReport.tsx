@@ -20,7 +20,7 @@ const UploadErrorReport: React.FC<Props> = ({
 }) => {
   const [isOpen, setOpen] = React.useState(true);
 
-  const onToggle = () => {
+  const handleToggle = () => {
     setOpen(!isOpen);
   };
 
@@ -84,7 +84,7 @@ const UploadErrorReport: React.FC<Props> = ({
         className={`upload-error-report__header 
         upload-error-report__header--${errorReport.error_type}
         ${isOpen ? "" : "upload-error-report__header--closed"}`}
-        onClick={onToggle}
+        onClick={handleToggle}
       >
         {ErrorTypeLabels[errorReport.error_type]}
         <i className={`upload-error-report__arrow ${isOpen ? "down" : "up"}`} />
