@@ -54,12 +54,11 @@ describe("Component: UploadFileReport", () => {
         errorReports={MockUploadFileReport!.exampleFileNameB}
       />
     );
-    expect(wrapper.find(UploadErrorReport).length).toBe(4);
+    const results = wrapper.find(UploadErrorReport);
+    expect(results.length).toBe(4);
     for (let i = 0; i < 4; i++) {
-      expect(wrapper.find(UploadErrorReport).get(i).key).toEqual(
-        `error-report-example.xlsx-${i}`
-      );
-      expect(wrapper.find(UploadErrorReport).get(i).props).toEqual({
+      expect(results.get(i).key).toEqual(`error-report-example.xlsx-${i}`);
+      expect(results.get(i).props).toEqual({
         errorReport: MockUploadFileReport!.exampleFileNameB![i],
         filename: "example.xlsx",
         fileReportIndex: i
