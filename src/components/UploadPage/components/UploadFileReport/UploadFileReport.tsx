@@ -22,7 +22,7 @@ const UploadFileReport: React.FC<Props> = ({ filename, errorReports }) => {
     }
     return errorReports.map((errorReport: ErrorReport, index: number) => (
       <UploadErrorReport
-        key={`$error-report-${filename}-${index}`}
+        key={`error-report-${filename}-${index}`}
         errorReport={errorReport}
         filename={filename}
         fileReportIndex={index}
