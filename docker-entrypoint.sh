@@ -17,4 +17,6 @@ REACT_APP_MCP_DATA_MAPPING_UTIL=\"$REACT_APP_MCP_DATA_MAPPING_UTIL\";\n"
 
 echo -e $SET_CONFIG >> /usr/share/nginx/html/settings.js
 
+echo "Ready to start at $(date)!";
+
 nginx -g 'daemon off;'
