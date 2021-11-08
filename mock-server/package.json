@@ -9,7 +9,7 @@
   },
   "author": "",
   "dependencies": {
-    "apollo-server": "2.6.1",
+    "apollo-server": "2.25.3",
     "graphql": "^14.2.1",
     "nodemon": "^1.18.4"
   },
