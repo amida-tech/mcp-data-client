@@ -10,7 +10,7 @@ RUN yarn install --pure-lockfile
 RUN yarn build
 RUN yarn install --production --frozen-lockfile
 
-FROM nginx:1.17.8
+FROM nginx:1.25.3
 
 RUN apt-get update && apt-get install gzip
 
